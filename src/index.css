@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    direction: rtl;
+    font-family: 'Cairo', sans-serif;
+  }
+
+  body {
+    background-color: #FAF7F2;
+    color: #2C1820;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #F8EDEB;
+}
+::-webkit-scrollbar-thumb {
+  background: #7B1537;
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #470923;
+}
+
+/* Subtle background patterns */
+.bg-islamic-pattern {
+  background-color: #FAF7F2;
+  background-image: radial-gradient(#E8B4B8 0.75px, transparent 0.75px), radial-gradient(#E8B4B8 0.75px, #FAF7F2 0.75px);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+}
+
+.gold-gradient {
+  background: linear-gradient(135deg, #D4AF37 0%, #F3DBAC 50%, #C59B27 100%);
+}
+
+.plum-gradient {
+  background: linear-gradient(135deg, #470923 0%, #681135 100%);
+}
+
+.card-gloss {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(249, 234, 205, 0.6);
+}
+
