@@ -1,61 +1,413 @@
 export const WILAYAS = [
-  { code: '01', name: '01 - أدرار', homePrice: 900, deskPrice: 600 },
-  { code: '02', name: '02 - الشلف', homePrice: 650, deskPrice: 400 },
-  { code: '03', name: '03 - الأغواط', homePrice: 750, deskPrice: 500 },
-  { code: '04', name: '04 - أم البواقي', homePrice: 650, deskPrice: 400 },
-  { code: '05', name: '05 - باتنة', homePrice: 650, deskPrice: 400 },
-  { code: '06', name: '06 - بجاية', homePrice: 650, deskPrice: 400 },
-  { code: '07', name: '07 - بسكرة', homePrice: 750, deskPrice: 500 },
-  { code: '08', name: '08 - بشار', homePrice: 900, deskPrice: 600 },
-  { code: '09', name: '09 - البليدة', homePrice: 500, deskPrice: 350 },
-  { code: '10', name: '10 - البويرة', homePrice: 600, deskPrice: 400 },
-  { code: '11', name: '11 - تمنراست', homePrice: 1100, deskPrice: 800 },
-  { code: '12', name: '12 - تبسة', homePrice: 700, deskPrice: 450 },
-  { code: '13', name: '13 - تلمسان', homePrice: 700, deskPrice: 450 },
-  { code: '14', name: '14 - تيارت', homePrice: 700, deskPrice: 450 },
-  { code: '15', name: '15 - تيزي وزو', homePrice: 600, deskPrice: 400 },
-  { code: '16', name: '16 - الجزائر (العاصمة)', homePrice: 400, deskPrice: 300 },
-  { code: '17', name: '17 - الجلفة', homePrice: 750, deskPrice: 500 },
-  { code: '18', name: '18 - جيجل', homePrice: 650, deskPrice: 400 },
-  { code: '19', name: '19 - سطيف', homePrice: 650, deskPrice: 400 },
-  { code: '20', name: '20 - سعيدة', homePrice: 700, deskPrice: 450 },
-  { code: '21', name: '21 - سكيكدة', homePrice: 650, deskPrice: 400 },
-  { code: '22', name: '22 - سيدي بلعباس', homePrice: 700, deskPrice: 450 },
-  { code: '23', name: '23 - عنابة', homePrice: 650, deskPrice: 400 },
-  { code: '24', name: '24 - قالمة', homePrice: 650, deskPrice: 400 },
-  { code: '25', name: '25 - قسنطينة', homePrice: 650, deskPrice: 400 },
-  { code: '26', name: '26 - المدية', homePrice: 600, deskPrice: 400 },
-  { code: '27', name: '27 - مستغانم', homePrice: 650, deskPrice: 400 },
-  { code: '28', name: '28 - المسيلة', homePrice: 700, deskPrice: 450 },
-  { code: '29', name: '29 - معسكر', homePrice: 700, deskPrice: 450 },
-  { code: '30', name: '30 - ورقلة', homePrice: 850, deskPrice: 550 },
-  { code: '31', name: '31 - وهران', homePrice: 650, deskPrice: 400 },
-  { code: '32', name: '32 - البيض', homePrice: 800, deskPrice: 550 },
-  { code: '33', name: '33 - إليزي', homePrice: 1100, deskPrice: 800 },
-  { code: '34', name: '34 - برج بوعريريج', homePrice: 650, deskPrice: 400 },
-  { code: '35', name: '35 - بومرداس', homePrice: 500, deskPrice: 350 },
-  { code: '36', name: '36 - الطارف', homePrice: 700, deskPrice: 450 },
-  { code: '37', name: '37 - تندوف', homePrice: 1100, deskPrice: 800 },
-  { code: '38', name: '38 - تسمسيلت', homePrice: 700, deskPrice: 450 },
-  { code: '39', name: '39 - الوادي', homePrice: 800, deskPrice: 550 },
-  { code: '40', name: '40 - خنشلة', homePrice: 700, deskPrice: 450 },
-  { code: '41', name: '41 - سوق أهراس', homePrice: 700, deskPrice: 450 },
-  { code: '42', name: '42 - تيبازة', homePrice: 500, deskPrice: 350 },
-  { code: '43', name: '43 - ميلة', homePrice: 650, deskPrice: 400 },
-  { code: '44', name: '44 - عين الدفلى', homePrice: 650, deskPrice: 400 },
-  { code: '45', name: '45 - النعامة', homePrice: 850, deskPrice: 600 },
-  { code: '46', name: '46 - عين تموشنت', homePrice: 700, deskPrice: 450 },
-  { code: '47', name: '47 - غرداية', homePrice: 800, deskPrice: 550 },
-  { code: '48', name: '48 - غليزان', homePrice: 700, deskPrice: 450 },
-  { code: '49', name: '49 - تيميمون', homePrice: 950, deskPrice: 650 },
-  { code: '50', name: '50 - برج باجي مختار', homePrice: 1200, deskPrice: 850 },
-  { code: '51', name: '51 - أولاد جلال', homePrice: 800, deskPrice: 550 },
-  { code: '52', name: '52 - بني عباس', homePrice: 950, deskPrice: 650 },
-  { code: '53', name: '53 - عين صالح', homePrice: 1000, deskPrice: 700 },
-  { code: '54', name: '54 - عين قزام', homePrice: 1200, deskPrice: 850 },
-  { code: '55', name: '55 - تقرت', homePrice: 850, deskPrice: 550 },
-  { code: '56', name: '56 - جانت', homePrice: 1200, deskPrice: 850 },
-  { code: '57', name: '57 - المغير', homePrice: 800, deskPrice: 550 },
-  { code: '58', name: '58 - المنيعة', homePrice: 850, deskPrice: 600 },
+  { 
+    code: '01', 
+    name: '01 - أدرار', 
+    homePrice: 900, 
+    deskPrice: 600,
+    communes: ['أدرار', 'تيميمون', 'رقان', 'زاوية كنتة', 'تسابيت', 'فنوغيل', 'طلمين']
+  },
+  { 
+    code: '02', 
+    name: '02 - الشلف', 
+    homePrice: 650, 
+    deskPrice: 400,
+    communes: ['الشلف', 'تنس', 'وادي الفضة', 'بوقادير', 'أولاد فارس', 'عين مران', 'زبوجة']
+  },
+  { 
+    code: '03', 
+    name: '03 - الأغواط', 
+    homePrice: 750, 
+    deskPrice: 500,
+    communes: ['الأغواط', 'آفلو', 'قصر الحيران', 'عين ماضي', 'حاسي الرمل', 'بريدة']
+  },
+  { 
+    code: '04', 
+    name: '04 - أم البواقي', 
+    homePrice: 650, 
+    deskPrice: 400,
+    communes: ['أم البواقي', 'عين البيضاء', 'عين مليلة', 'مسكيانة', 'سيقوس', 'عين فكرون']
+  },
+  { 
+    code: '05', 
+    name: '05 - باتنة', 
+    homePrice: 650, 
+    deskPrice: 400,
+    communes: ['باتنة', 'بريكة', 'عين التوتة', 'مروانة', 'آريس', 'نقاوس', 'تازولت']
+  },
+  { 
+    code: '06', 
+    name: '06 - بجاية', 
+    homePrice: 650, 
+    deskPrice: 400,
+    communes: ['بجاية', 'أقبو', 'أميزور', 'خراطة', 'سيدي عيش', 'أوقاس', 'القصر']
+  },
+  { 
+    code: '07', 
+    name: '07 - بسكرة', 
+    homePrice: 750, 
+    deskPrice: 500,
+    communes: ['بسكرة', 'طولقة', 'سيدي عقبة', 'أولاد جلال', 'زريبة الوادي', 'الفيض']
+  },
+  { 
+    code: '08', 
+    name: '08 - بشار', 
+    homePrice: 900, 
+    deskPrice: 600,
+    communes: ['بشار', 'القنادسة', 'بني عباس', 'تاغيت', 'العبادلة', 'تبلبالة']
+  },
+  { 
+    code: '09', 
+    name: '09 - البليدة', 
+    homePrice: 500, 
+    deskPrice: 350,
+    communes: ['البليدة', 'بوفاريك', 'أولاد يعيش', 'العفرون', 'موزاية', 'وادي العلايق', 'بوعرفة', 'الصومعة', 'الشبلي']
+  },
+  { 
+    code: '10', 
+    name: '10 - البويرة', 
+    homePrice: 600, 
+    deskPrice: 400,
+    communes: ['البويرة', 'الأخضرية', 'سور الغزلان', 'عين بسام', 'مشدالة', 'بئر غبالو']
+  },
+  { 
+    code: '11', 
+    name: '11 - تمنراست', 
+    homePrice: 1100, 
+    deskPrice: 800,
+    communes: ['تمنراست', 'عين صالح', 'عين قزام', 'أباليسا', 'إيدلس']
+  },
+  { 
+    code: '12', 
+    name: '12 - تبسة', 
+    homePrice: 700, 
+    deskPrice: 450,
+    communes: ['تبسة', 'الشريعة', 'بئر العاتر', 'العوينات', 'الونزة', 'مرسط']
+  },
+  { 
+    code: '13', 
+    name: '13 - تلمسان', 
+    homePrice: 700, 
+    deskPrice: 450,
+    communes: ['تلمسان', 'مغنية', 'منصورة', 'سبدو', 'الغزوات', 'الرمشي', 'شتوان', 'ندرومة']
+  },
+  { 
+    code: '14', 
+    name: '14 - تيارت', 
+    homePrice: 700, 
+    deskPrice: 450,
+    communes: ['تيارت', 'فرندة', 'السوقر', 'قصر الشلالة', 'مهدية', 'الدحموني']
+  },
+  { 
+    code: '15', 
+    name: '15 - تيزي وزو', 
+    homePrice: 600, 
+    deskPrice: 400,
+    communes: ['تيزي وزو', 'عزازقة', 'ذراع بن خدة', 'بوغني', 'تيقزيرت', 'الأربعاء نايث إيراثن', 'واقنون']
+  },
+  { 
+    code: '16', 
+    name: '16 - الجزائر (العاصمة)', 
+    homePrice: 400, 
+    deskPrice: 300,
+    communes: [
+      'الجزائر الوسطى', 'سيدي امحمد', 'باب الواد', 'القبة', 'بئر خادم', 
+      'حسين داي', 'بوزريعة', 'الأبيار', 'الشراقة', 'دالي ابراهيم', 
+      'درارية', 'بابا حسن', 'الحراش', 'برج البحري', 'برج الكيفان', 
+      'الدار البيضاء', 'الرويبة', 'زرالدة', 'براقي', 'بئر توتة', 'عين البنيان', 'سطاوالي'
+    ]
+  },
+  { 
+    code: '17', 
+    name: '17 - الجلفة', 
+    homePrice: 750, 
+    deskPrice: 500,
+    communes: ['الجلفة', 'مسعد', 'عين وسارة', 'حاسي بحبح', 'دار الشيوخ', 'الشارف']
+  },
+  { 
+    code: '18', 
+    name: '18 - جيجل', 
+    homePrice: 650, 
+    deskPrice: 400,
+    communes: ['جيجل', 'الطاهير', 'الميلية', 'العوانة', 'العنصر', 'زيامة منصورية']
+  },
+  { 
+    code: '19', 
+    name: '19 - سطيف', 
+    homePrice: 650, 
+    deskPrice: 400,
+    communes: ['سطيف', 'العلمة', 'عين أرنات', 'عين ولمان', 'بوقاعة', 'عين الكبيرة', 'عموشة']
+  },
+  { 
+    code: '20', 
+    name: '20 - سعيدة', 
+    homePrice: 700, 
+    deskPrice: 450,
+    communes: ['سعيدة', 'الحساسنة', 'يوب', 'أولاد إبراهيم', 'سيدي بوبكر']
+  },
+  { 
+    code: '21', 
+    name: '21 - سكيكدة', 
+    homePrice: 650, 
+    deskPrice: 400,
+    communes: ['سكيكدة', 'الحروش', 'القل', 'عزابة', 'تمالوس', 'رمضان جمال']
+  },
+  { 
+    code: '22', 
+    name: '22 - سيدي بلعباس', 
+    homePrice: 700, 
+    deskPrice: 450,
+    communes: ['سيدي بلعباس', 'تلاغ', 'بن باديس', 'سفيزف', 'سيدي لحسن', 'رأس الماء']
+  },
+  { 
+    code: '23', 
+    name: '23 - عنابة', 
+    homePrice: 650, 
+    deskPrice: 400,
+    communes: ['عنابة', 'البوني', 'سيدي عمار', 'برحال', 'الحجار', 'شطايبي']
+  },
+  { 
+    code: '24', 
+    name: '24 - قالمة', 
+    homePrice: 650, 
+    deskPrice: 400,
+    communes: ['قالمة', 'وادي الزناتي', 'بوشقوف', 'هليوبوليس', 'حمام الدباغ', 'بلخير']
+  },
+  { 
+    code: '25', 
+    name: '25 - قسنطينة', 
+    homePrice: 650, 
+    deskPrice: 400,
+    communes: ['قسنطينة', 'الخروب', 'علي منجلي', 'حامة بوزيان', 'عين السمارة', 'ديدوش مراد', 'زيغود يوسف']
+  },
+  { 
+    code: '26', 
+    name: '26 - المدية', 
+    homePrice: 600, 
+    deskPrice: 400,
+    communes: ['المدية', 'البرواقية', 'قصر البخاري', 'بني سليمان', 'وزرة', 'تابلاط']
+  },
+  { 
+    code: '27', 
+    name: '27 - مستغانم', 
+    homePrice: 650, 
+    deskPrice: 400,
+    communes: ['مستغانم', 'سيدي علي', 'عين تادلس', 'حاسي مماش', 'مزغران', 'خير الدين']
+  },
+  { 
+    code: '28', 
+    name: '28 - المسيلة', 
+    homePrice: 700, 
+    deskPrice: 450,
+    communes: ['المسيلة', 'بوسعادة', 'سيدي عيسى', 'مقرة', 'حمام الضلعة', 'عين الحجل']
+  },
+  { 
+    code: '29', 
+    name: '29 - معسكر', 
+    homePrice: 700, 
+    deskPrice: 450,
+    communes: ['معسكر', 'سيق', 'تيغنيف', 'غريس', 'المحمدية', 'عوف']
+  },
+  { 
+    code: '30', 
+    name: '30 - ورقلة', 
+    homePrice: 850, 
+    deskPrice: 550,
+    communes: ['ورقلة', 'حاسي مسعود', 'تقرت', 'الرويسات', 'سيدي خويلد', 'عين البيضاء']
+  },
+  { 
+    code: '31', 
+    name: '31 - وهران', 
+    homePrice: 650, 
+    deskPrice: 400,
+    communes: ['وهران', 'بئر الجير', 'السانية', 'عين الترك', 'بطيوة', 'أرزيو', 'قديل', 'بوتليليس', 'الكرمة']
+  },
+  { 
+    code: '32', 
+    name: '32 - البيض', 
+    homePrice: 800, 
+    deskPrice: 550,
+    communes: ['البيض', 'الأبيض سيدي الشيخ', 'بوقطب', 'بريزينة', 'رقاصة']
+  },
+  { 
+    code: '33', 
+    name: '33 - إليزي', 
+    homePrice: 1100, 
+    deskPrice: 800,
+    communes: ['إليزي', 'جانت', 'إن أمناس', 'برج عمر إدريس']
+  },
+  { 
+    code: '34', 
+    name: '34 - برج بوعريريج', 
+    homePrice: 650, 
+    deskPrice: 400,
+    communes: ['برج بوعريريج', 'رأس الوادي', 'منصورة', 'مجانة', 'الياشير', 'برج الغدير']
+  },
+  { 
+    code: '35', 
+    name: '35 - بومرداس', 
+    homePrice: 500, 
+    deskPrice: 350,
+    communes: ['بومرداس', 'برج منايل', 'بودواو', 'دلس', 'يسر', 'خميس الخشنة', 'تيجلابين', 'سي مصطفى']
+  },
+  { 
+    code: '36', 
+    name: '36 - الطارف', 
+    homePrice: 700, 
+    deskPrice: 450,
+    communes: ['الطارف', 'القالة', 'بوثلجة', 'بن مهيدي', 'الذرعان', 'بوحجار']
+  },
+  { 
+    code: '37', 
+    name: '37 - تندوف', 
+    homePrice: 1100, 
+    deskPrice: 800,
+    communes: ['تندوف', 'أم العسل']
+  },
+  { 
+    code: '38', 
+    name: '38 - تسمسيلت', 
+    homePrice: 700, 
+    deskPrice: 450,
+    communes: ['تسمسيلت', 'ثنية الحد', 'برج بونعامة', 'لردام', 'خميستي']
+  },
+  { 
+    code: '39', 
+    name: '39 - الوادي', 
+    homePrice: 800, 
+    deskPrice: 550,
+    communes: ['الوادي', 'قمار', 'الدبيلة', 'جامعة', 'المغير', 'حاسي خليفة', 'الرقيبة']
+  },
+  { 
+    code: '40', 
+    name: '40 - خنشلة', 
+    homePrice: 700, 
+    deskPrice: 450,
+    communes: ['خنشلة', 'قايس', 'ششار', 'أولاد رشاش', 'بوحمامة', 'الحامة']
+  },
+  { 
+    code: '41', 
+    name: '41 - سوق أهراس', 
+    homePrice: 700, 
+    deskPrice: 450,
+    communes: ['سوق أهراس', 'سدراتة', 'تاورة', 'مداوروش', 'المشروحة', 'أولاد إدريس']
+  },
+  { 
+    code: '42', 
+    name: '42 - تيبازة', 
+    homePrice: 500, 
+    deskPrice: 350,
+    communes: ['تيبازة', 'بواسماعيل', 'شرشال', 'القليعة', 'حطاطبة', 'فوكة', 'الداموس', 'حجوط']
+  },
+  { 
+    code: '43', 
+    name: '43 - ميلة', 
+    homePrice: 650, 
+    deskPrice: 400,
+    communes: ['ميلة', 'شلغوم العيد', 'فرجيوة', 'التلاغمة', 'زغاية', 'تاجنانت']
+  },
+  { 
+    code: '44', 
+    name: '44 - عين الدفلى', 
+    homePrice: 650, 
+    deskPrice: 400,
+    communes: ['عين الدفلى', 'خميس مليانة', 'العطاف', 'مليانة', 'جليدة', 'العامرة']
+  },
+  { 
+    code: '45', 
+    name: '45 - النعامة', 
+    homePrice: 850, 
+    deskPrice: 600,
+    communes: ['النعامة', 'المشرية', 'عين الصفراء', 'عسلة', 'تيوت']
+  },
+  { 
+    code: '46', 
+    name: '46 - عين تموشنت', 
+    homePrice: 700, 
+    deskPrice: 450,
+    communes: ['عين تموشنت', 'بني صاف', 'حمام بوحجر', 'العامرية', 'عين الكيحل', 'المالح']
+  },
+  { 
+    code: '47', 
+    name: '47 - غرداية', 
+    homePrice: 800, 
+    deskPrice: 550,
+    communes: ['غرداية', 'متليلي', 'القرارة', 'بني يزقن', 'المنيعة', 'العطف', 'بريان']
+  },
+  { 
+    code: '48', 
+    name: '48 - غليزان', 
+    homePrice: 700, 
+    deskPrice: 450,
+    communes: ['غليزان', 'وادي ارهيو', 'مازونة', 'يلل', 'عمي موسى', 'جديوية']
+  },
+  { 
+    code: '49', 
+    name: '49 - تيميمون', 
+    homePrice: 950, 
+    deskPrice: 650,
+    communes: ['تيميمون', 'أوقروت', 'شروين', 'طلمين', 'تنركوك']
+  },
+  { 
+    code: '50', 
+    name: '50 - برج باجي مختار', 
+    homePrice: 1200, 
+    deskPrice: 850,
+    communes: ['برج باجي مختار', 'تيمياوين']
+  },
+  { 
+    code: '51', 
+    name: '51 - أولاد جلال', 
+    homePrice: 800, 
+    deskPrice: 550,
+    communes: ['أولاد جلال', 'سيدي خالد', 'الدوسن', 'الشعيبة', 'رأس الميعاد']
+  },
+  { 
+    code: '52', 
+    name: '52 - بني عباس', 
+    homePrice: 950, 
+    deskPrice: 650,
+    communes: ['بني عباس', 'كرزاز', 'تبلبالة', 'إقلي', 'الواتة']
+  },
+  { 
+    code: '53', 
+    name: '53 - عين صالح', 
+    homePrice: 1000, 
+    deskPrice: 700,
+    communes: ['عين صالح', 'فقارة الزوى', 'إينغر']
+  },
+  { 
+    code: '54', 
+    name: '54 - عين قزام', 
+    homePrice: 1200, 
+    deskPrice: 850,
+    communes: ['عين قزام', 'تين زواتين']
+  },
+  { 
+    code: '55', 
+    name: '55 - تقرت', 
+    homePrice: 850, 
+    deskPrice: 550,
+    communes: ['تقرت', 'الطيبات', 'تماسين', 'المقارين', 'بلدة عمر', 'النزلة']
+  },
+  { 
+    code: '56', 
+    name: '56 - جانت', 
+    homePrice: 1200, 
+    deskPrice: 850,
+    communes: ['جانت', 'برج الحواس']
+  },
+  { 
+    code: '57', 
+    name: '57 - المغير', 
+    homePrice: 800, 
+    deskPrice: 550,
+    communes: ['المغير', 'جامعة', 'سيدي خليل', 'أم الطيور']
+  },
+  { 
+    code: '58', 
+    name: '58 - المنيعة', 
+    homePrice: 850, 
+    deskPrice: 600,
+    communes: ['المنيعة', 'حاسي القارة', 'حاسي الفحل']
+  },
 ];
-

@@ -1,84 +1,74 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AnnouncementBar from './components/AnnouncementBar';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
+import MediaGallery from './components/MediaGallery';
+import QuickOrderCard from './components/QuickOrderCard';
 import TrustBar from './components/TrustBar';
 import ContentsSection from './components/ContentsSection';
-import VideoSection from './components/VideoSection';
 import WhyMishkat from './components/WhyMishkat';
 import ReviewsSection from './components/ReviewsSection';
-import PricingOffer from './components/PricingOffer';
-import OrderForm from './components/OrderForm';
 import FaqSection from './components/FaqSection';
 import Footer from './components/Footer';
 import StickyMobileCta from './components/StickyMobileCta';
 
 export default function App() {
-  const [selectedBundleId, setSelectedBundleId] = useState('single');
-
-  const scrollToOrderForm = () => {
-    const el = document.getElementById('order-form');
+  const scrollToOrder = () => {
+    const el = document.getElementById('quick-order-card');
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   };
 
-  const handleSelectBundle = (bundleId) => {
-    setSelectedBundleId(bundleId);
-    scrollToOrderForm();
-  };
-
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF7F2] text-[#2C1820] font-cairo selection:bg-[#470923] selection:text-white pb-14 sm:pb-0">
-      {/* Top Banner */}
+    <div className="min-h-screen bg-[#FAF7F2] text-[#2C1820] font-cairo selection:bg-[#470923] selection:text-white flex flex-col w-full overflow-x-hidden">
+      {/* 1. Top Announcement Bar */}
       <AnnouncementBar />
 
-      {/* Main Navigation */}
-      <Navbar onOrderClick={scrollToOrderForm} />
+      {/* 2. Main Navbar with Links & Logo */}
+      <Navbar onOrderClick={scrollToOrder} />
 
-      {/* Main Content */}
-      <main className="flex-1">
-        {/* 1. Hero Section */}
-        <Hero onOrderClick={scrollToOrderForm} />
+      {/* 3. Main Conversion Hero Zone (Top of Page) */}
+      <main className="flex-1 w-full max-w-7xl mx-auto px-3.5 sm:px-6 lg:px-8 py-5 sm:py-8 space-y-12">
+        
+        {/* 2-Column Hero Zone on Desktop, Natural Vertical Flow on Mobile */}
+        <div id="order-hero" className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start w-full">
+          
+          {/* Media Column (Image & Video Gallery) */}
+          <div className="w-full lg:col-span-7">
+            <MediaGallery />
+          </div>
 
-        {/* 2. Trust Seals Bar */}
+          {/* Order Form Column (High Converting COD Card) */}
+          <div className="w-full lg:col-span-5 lg:sticky lg:top-24">
+            <QuickOrderCard />
+          </div>
+
+        </div>
+
+        {/* 4. Trust Badges Strip */}
         <TrustBar />
 
-        {/* 3. Product Contents (5 Core Items) */}
-        <ContentsSection onOrderClick={scrollToOrderForm} />
+        {/* 5. Product Contents Section (5 Core Items) */}
+        <ContentsSection onOrderClick={scrollToOrder} />
 
-        {/* 4. Video / Unboxing Showcase */}
-        <VideoSection onOrderClick={scrollToOrderForm} />
+        {/* 6. Why Choose Mishkat? / Emotional Benefits */}
+        <WhyMishkat onOrderClick={scrollToOrder} />
 
-        {/* 5. Why Choose Mishkat? / Emotional Benefits */}
-        <WhyMishkat onOrderClick={scrollToOrderForm} />
-
-        {/* 6. Customer Testimonials & Reviews */}
+        {/* 7. Customer Reviews & Testimonials */}
         <ReviewsSection />
 
-        {/* 7. Special Pricing & Bundles */}
-        <PricingOffer
-          selectedBundle={selectedBundleId}
-          onSelectBundle={handleSelectBundle}
-          onOrderClick={scrollToOrderForm}
-        />
-
-        {/* 8. High-Converting Order Form */}
-        <OrderForm
-          selectedBundleId={selectedBundleId}
-          onSelectBundle={setSelectedBundleId}
-        />
-
-        {/* 9. FAQ Section */}
+        {/* 8. FAQ Section */}
         <FaqSection />
+
       </main>
 
-      {/* 10. Footer */}
-      <Footer onOrderClick={scrollToOrderForm} />
+      {/* 9. Previous Beloved Footer */}
+      <Footer onOrderClick={scrollToOrder} />
 
-      {/* 11. Mobile Floating CTA Bar */}
-      <StickyMobileCta onOrderClick={scrollToOrderForm} />
+      {/* 10. Sticky Mobile CTA for mobile shoppers */}
+      <StickyMobileCta onOrderClick={scrollToOrder} />
     </div>
   );
 }
-
