@@ -21,8 +21,8 @@ export default function StickyMobileCta({ onOrderClick }) {
       <div className="flex items-center justify-between gap-3">
         <div className="text-right">
           <div className="flex items-baseline gap-1.5">
-            <span className="text-lg font-extrabold text-[#470923]">3,900 دج</span>
-            <span className="text-xs text-gray-400 line-through">5,400 دج</span>
+            <span className="text-lg font-extrabold text-[#470923]">2,700 دج</span>
+            <span className="text-xs text-gray-400 line-through">3,800 دج</span>
           </div>
           <span className="text-[10px] text-emerald-700 font-bold block">
             التوصيل متوفر لـ 58 ولاية 🇩🇿

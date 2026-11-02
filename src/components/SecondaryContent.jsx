@@ -75,17 +75,17 @@ export default function SecondaryContent({ onScrollToOrder }) {
           {/* 6th Card: Gift packaging */}
           <div className="bg-gradient-to-r from-plum-900 to-[#601233] text-cream-100 rounded-2xl p-4 shadow-sm text-right flex gap-3.5 items-center">
             <div className="w-16 h-16 rounded-xl bg-white/10 flex items-center justify-center shrink-0 text-cream-200 text-2xl">
-              🎁
+              ✨
             </div>
             <div className="space-y-0.5 flex-1">
               <span className="text-[10px] font-bold text-cream-200 bg-white/20 px-2 py-0.5 rounded-full inline-block">
-                هدية مجانية
+                تصميم متقن
               </span>
               <h3 className="text-sm font-bold text-white">
-                تغليف هدايا فاخر وبطاقة إهداء
+                علبة فاخرة صلبة وبطاقة إهداء
               </h3>
               <p className="text-xs text-cream-200/80">
-                جاهز لتقديمه لنفسكِ أو لأغلى الناس مباشرة.
+                لحفظ جميع مكوناتك بتنسيق أنيق يدوم معكِ.
               </p>
             </div>
           </div>
@@ -183,7 +183,7 @@ export default function SecondaryContent({ onScrollToOrder }) {
           onClick={onScrollToOrder}
           className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#470923] hover:bg-plum-800 text-white font-extrabold text-xs sm:text-sm shadow-md transition-all hover:scale-105"
         >
-          <span>اصعدي لملء استمارة الطلب (3,900 دج)</span>
+          <span>اصعدي لملء استمارة الطلب (2,700 دج)</span>
           <ArrowUp className="w-4 h-4" />
         </button>
       </div>

@@ -13,16 +13,14 @@ import {
   ShieldCheck, 
   AlertCircle,
   MessageCircle,
-  Check,
   Plus,
-  Minus,
-  Edit3
+  Minus
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 // Base pricing
-const BASE_SINGLE_PRICE = 3900;
-const ORIGINAL_SINGLE_PRICE = 5400;
+const BASE_SINGLE_PRICE = 2700;
+const ORIGINAL_SINGLE_PRICE = 3800;
 
 // Google Apps Script Webhook URL (with fallback to user's configured script)
 const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbw04MPf7VOW56-OP1p7RpW-rMrp2ImMDsCtUGqvl_E_ltL4I5VHg0fyaFZOQN1-e9k4Ug/exec";
@@ -62,32 +60,28 @@ export default function QuickOrderCard() {
   // Determine actual quantity number
   const actualQuantity = quantityTier === 'custom' ? Math.max(1, customQuantity) : quantityTier;
 
-  // Calculate pricing based on tier
+  // Calculate pricing based on tier (Base: 2700 DZD)
   let productSubtotal = 0;
   let originalSubtotal = ORIGINAL_SINGLE_PRICE * actualQuantity;
   let savings = 0;
 
   if (quantityTier === 1) {
-    productSubtotal = 3900;
-    savings = 1500;
+    productSubtotal = 2700;
+    savings = 1100;
   } else if (quantityTier === 2) {
-    productSubtotal = 7200; // 3600 each, save 600 more
-    savings = 3600;
+    productSubtotal = 5000; // 2500 each - save 400 DZD more
+    savings = 2600;
   } else if (quantityTier === 3) {
-    productSubtotal = 10200; // 3400 each, save 1500 more
-    savings = 6000;
+    productSubtotal = 7200; // 2400 each - save 900 DZD more
+    savings = 4200;
   } else {
-    // Custom quantity (4+) at 3300 DZD each!
-    productSubtotal = actualQuantity * 3300;
+    // Custom quantity (4+) at 2300 DZD each (wholesale rate)
+    productSubtotal = actualQuantity * 2300;
     savings = originalSubtotal - productSubtotal;
   }
 
-  // Free delivery for 3+ boxes or 2 boxes in Alger
-  const isFreeDelivery = actualQuantity >= 3 || (actualQuantity === 2 && currentWilaya.code === '16');
-  const deliveryFee = isFreeDelivery 
-    ? 0 
-    : (deliveryType === 'home' ? currentWilaya.homePrice : currentWilaya.deskPrice);
-  const grandTotal = productSubtotal + deliveryFee;
+  // Free delivery for 3 boxes or more
+  const isFreeDelivery = actualQuantity >= 3;
 
   // Form Validation
   const validate = () => {
@@ -140,8 +134,8 @@ export default function QuickOrderCard() {
       deliveryType: deliveryType === 'home' ? 'توصيل للمنزل' : 'استلام من المكتب (Stop Desk)',
       quantity: `${actualQuantity} بوكس`,
       productPrice: `${productSubtotal} دج`,
-      deliveryFee: deliveryFee === 0 ? 'مجاني' : `${deliveryFee} دج`,
-      totalPrice: `${grandTotal} دج`,
+      deliveryFee: isFreeDelivery ? 'توصيل مجاني 🎁' : 'يُحدد عند الاتصال بالزبونة',
+      totalPrice: isFreeDelivery ? `${productSubtotal} دج (توصيل مجاني)` : `${productSubtotal} دج (+ مصاريف التوصيل)`,
       notes: quantityTier === 'custom' ? `طلب كمية مخصصة (${actualQuantity})` : ''
     };
 
@@ -229,6 +223,14 @@ export default function QuickOrderCard() {
             </p>
           </div>
 
+          {/* Call confirmation reassurance notice */}
+          <div className="bg-amber-50/90 border border-amber-200 rounded-2xl p-3 text-right flex items-start gap-2.5">
+            <Phone className="w-4 h-4 text-amber-800 shrink-0 mt-0.5" />
+            <p className="text-xs text-amber-950 leading-relaxed font-semibold">
+              سيتصل بكِ فريق خدمة العملاء هاتفياً لتأكيد طلبيتكِ، وتحديد موعد وتكلفة التوصيل بدقة لبلديتكِ قبل الشحن 📞
+            </p>
+          </div>
+
           {/* Receipt details */}
           <div className="bg-[#FAF7F2] p-4 rounded-2xl border border-plum-100 space-y-2 text-xs">
             <div className="flex justify-between py-1 border-b border-plum-100/60">
@@ -251,9 +253,15 @@ export default function QuickOrderCard() {
               <span className="text-gray-600">مكان الاستلام:</span>
               <span className="font-bold text-[#470923]">{submittedData.deliveryType}</span>
             </div>
+            <div className="flex justify-between py-1 border-b border-plum-100/60">
+              <span className="text-gray-600">مصاريف التوصيل:</span>
+              <span className={`font-bold ${isFreeDelivery ? 'text-emerald-700' : 'text-plum-700'}`}>
+                {isFreeDelivery ? 'توصيل مجاني 🎁' : 'تُحدد عند الاتصال التأكيدي 📞'}
+              </span>
+            </div>
             <div className="flex justify-between py-1.5 text-sm font-extrabold text-[#470923] bg-cream-200/50 px-2.5 rounded-xl border border-cream-300">
-              <span>المجموع للدفع عند الاستلام:</span>
-              <span>{submittedData.totalPrice}</span>
+              <span>{isFreeDelivery ? 'المجموع الكلي مع التوصيل المجاني:' : 'المجموع (قبل التوصيل):'}</span>
+              <span>{productSubtotal.toLocaleString()} دج</span>
             </div>
           </div>
 
@@ -287,71 +295,71 @@ export default function QuickOrderCard() {
               اختاري الكمية المطلوبة:
             </label>
             
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-3">
               {/* Option 1: 1 Box */}
               <button
                 type="button"
                 onClick={() => setQuantityTier(1)}
-                className={`p-2.5 rounded-xl border-2 text-right transition-all flex flex-col justify-between ${
+                className={`pt-4 pb-2.5 px-2 rounded-xl border-2 text-center transition-all flex flex-col justify-between items-center ${
                   quantityTier === 1
                     ? 'border-[#470923] bg-plum-50/80 text-[#470923] shadow-sm'
                     : 'border-gray-200 hover:border-plum-200 text-gray-700 bg-white'
                 }`}
               >
                 <span className="text-xs font-extrabold">1 بوكس</span>
-                <span className="text-[11px] font-bold text-[#470923] mt-0.5">3,900 دج</span>
-                <span className="text-[10px] text-gray-500 line-through">5,400 دج</span>
+                <span className="text-xs font-bold text-[#470923] my-0.5">2,700 دج</span>
+                <span className="text-[10px] text-gray-400 line-through">3,800 دج</span>
               </button>
 
               {/* Option 2: 2 Boxes */}
               <button
                 type="button"
                 onClick={() => setQuantityTier(2)}
-                className={`p-2.5 rounded-xl border-2 text-right transition-all flex flex-col justify-between relative ${
+                className={`pt-4 pb-2.5 px-2 rounded-xl border-2 text-center transition-all flex flex-col justify-between items-center relative ${
                   quantityTier === 2
                     ? 'border-[#470923] bg-plum-50/80 text-[#470923] shadow-sm'
                     : 'border-gray-200 hover:border-plum-200 text-gray-700 bg-white'
                 }`}
               >
-                <span className="absolute -top-2 right-1.5 bg-[#470923] text-cream-200 text-[9px] font-bold px-1.5 py-0.2 rounded-full">
+                <span className="absolute -top-2.5 inset-x-0 mx-auto w-max bg-[#470923] text-cream-200 text-[9px] font-bold px-2 py-0.5 rounded-full shadow-sm whitespace-nowrap">
                   الأكثر طلباً ⭐
                 </span>
                 <span className="text-xs font-extrabold">2 بوكس</span>
-                <span className="text-[11px] font-bold text-[#470923] mt-0.5">7,200 دج</span>
-                <span className="text-[10px] text-emerald-700 font-semibold">وفرتي 600دج</span>
+                <span className="text-xs font-bold text-[#470923] my-0.5">5,000 دج</span>
+                <span className="text-[10px] text-emerald-700 font-bold whitespace-nowrap">وفرتي 400 دج</span>
               </button>
 
               {/* Option 3: 3 Boxes */}
               <button
                 type="button"
                 onClick={() => setQuantityTier(3)}
-                className={`p-2.5 rounded-xl border-2 text-right transition-all flex flex-col justify-between relative ${
+                className={`pt-4 pb-2.5 px-2 rounded-xl border-2 text-center transition-all flex flex-col justify-between items-center relative ${
                   quantityTier === 3
                     ? 'border-[#470923] bg-plum-50/80 text-[#470923] shadow-sm'
                     : 'border-gray-200 hover:border-plum-200 text-gray-700 bg-white'
                 }`}
               >
-                <span className="absolute -top-2 right-1.5 bg-emerald-700 text-white text-[9px] font-bold px-1.5 py-0.2 rounded-full">
-                  شحن مجاني 🎁
+                <span className="absolute -top-2.5 inset-x-0 mx-auto w-max bg-emerald-700 text-white text-[9px] font-bold px-2 py-0.5 rounded-full shadow-sm whitespace-nowrap">
+                  توصيل مجاني 🎁
                 </span>
                 <span className="text-xs font-extrabold">3 بوكسات</span>
-                <span className="text-[11px] font-bold text-[#470923] mt-0.5">10,200 دج</span>
-                <span className="text-[10px] text-emerald-700 font-semibold">وفرتي 1500دج</span>
+                <span className="text-xs font-bold text-[#470923] my-0.5">7,200 دج</span>
+                <span className="text-[10px] text-emerald-700 font-bold whitespace-nowrap">وفرتي 900 دج</span>
               </button>
 
               {/* Option 4: Custom Quantity */}
               <button
                 type="button"
                 onClick={() => setQuantityTier('custom')}
-                className={`p-2.5 rounded-xl border-2 text-right transition-all flex flex-col justify-between ${
+                className={`pt-4 pb-2.5 px-2 rounded-xl border-2 text-center transition-all flex flex-col justify-between items-center ${
                   quantityTier === 'custom'
                     ? 'border-[#470923] bg-plum-50/80 text-[#470923] shadow-sm'
                     : 'border-gray-200 hover:border-plum-200 text-gray-700 bg-white'
                 }`}
               >
                 <span className="text-xs font-extrabold">كمية أخرى</span>
-                <span className="text-[11px] font-bold text-[#470923] mt-0.5">3,300 دج/ب</span>
-                <span className="text-[10px] text-plum-700 font-medium">سعر الجملة</span>
+                <span className="text-xs font-bold text-[#470923] my-0.5">2,300 دج/ب</span>
+                <span className="text-[10px] text-plum-700 font-medium whitespace-nowrap">سعر الجملة</span>
               </button>
             </div>
 
@@ -418,7 +426,7 @@ export default function QuickOrderCard() {
           {/* 3. Phone Number */}
           <div className="space-y-1">
             <label className="block text-xs font-bold text-gray-700">
-              رقم الهاتف (للاتصال لتسليم الطرد) <span className="text-rose-600">*</span>
+              رقم الهاتف (للاتصال لتأكيد الطلب وتسليم الطرد) <span className="text-rose-600">*</span>
             </label>
             <div className="relative">
               <input
@@ -509,10 +517,10 @@ export default function QuickOrderCard() {
             </div>
           )}
 
-          {/* 5. Delivery Type Selector */}
+          {/* 5. Delivery Type Selector (Fees hidden until phone confirmation) */}
           <div className="space-y-1.5 pt-1">
             <label className="block text-xs font-bold text-gray-700">
-              طريقة ومكان الاستلام:
+              طريقة ومكان الاستلام المفضلة:
             </label>
             <div className="grid grid-cols-2 gap-2">
               <div
@@ -527,9 +535,15 @@ export default function QuickOrderCard() {
                   <Home className="w-3.5 h-3.5 text-[#470923]" />
                   <span>لباب المنزل</span>
                 </div>
-                <span className="font-extrabold text-[11px]">
-                  {isFreeDelivery ? 'مجاني 🎁' : `${currentWilaya.homePrice} دج`}
-                </span>
+                {isFreeDelivery ? (
+                  <span className="text-[10px] text-emerald-700 font-bold bg-emerald-50 px-1.5 py-0.5 rounded-md border border-emerald-200">
+                    مجاني 🎁
+                  </span>
+                ) : (
+                  <span className="text-[10px] text-plum-700 font-semibold">
+                    يُحدد هاتفياً 📞
+                  </span>
+                )}
               </div>
 
               <div
@@ -544,9 +558,15 @@ export default function QuickOrderCard() {
                   <Building2 className="w-3.5 h-3.5 text-[#470923]" />
                   <span>من المكتب (Stop Desk)</span>
                 </div>
-                <span className="font-extrabold text-[11px]">
-                  {isFreeDelivery ? 'مجاني 🎁' : `${currentWilaya.deskPrice} دج`}
-                </span>
+                {isFreeDelivery ? (
+                  <span className="text-[10px] text-emerald-700 font-bold bg-emerald-50 px-1.5 py-0.5 rounded-md border border-emerald-200">
+                    مجاني 🎁
+                  </span>
+                ) : (
+                  <span className="text-[10px] text-plum-700 font-semibold">
+                    يُحدد هاتفياً 📞
+                  </span>
+                )}
               </div>
             </div>
           </div>
@@ -558,17 +578,31 @@ export default function QuickOrderCard() {
               <span className="font-bold text-[#470923]">{productSubtotal.toLocaleString()} دج</span>
             </div>
             <div className="flex justify-between text-gray-700">
-              <span>تكلفة التوصيل ({currentWilaya.name}):</span>
-              <span className="font-bold text-[#470923]">
-                {deliveryFee === 0 ? 'توصيل مجاني 🎁' : `${deliveryFee} دج`}
-              </span>
+              <span>مصاريف التوصيل ({currentWilaya.name}):</span>
+              {isFreeDelivery ? (
+                <span className="font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
+                  توصيل مجاني 🎁
+                </span>
+              ) : (
+                <span className="font-bold text-plum-700">
+                  يتم تأكيدها معكم هاتفياً 📞
+                </span>
+              )}
             </div>
             <div className="pt-2 border-t border-plum-200/80 flex justify-between items-center text-sm sm:text-base font-extrabold text-[#470923]">
-              <span>المجموع الكلي للدفع عند الاستلام:</span>
+              <span>{isFreeDelivery ? 'المجموع الكلي (شامل التوصيل المجاني):' : 'المجموع (قبل مصاريف التوصيل):'}</span>
               <span className="text-lg sm:text-xl font-mono text-[#470923]">
-                {grandTotal.toLocaleString()} <span className="text-xs font-cairo">دج</span>
+                {productSubtotal.toLocaleString()} <span className="text-xs font-cairo">دج</span>
               </span>
             </div>
+          </div>
+
+          {/* Reassurance Banner Before Submitting */}
+          <div className="bg-amber-50/90 border border-amber-200/90 rounded-2xl p-3 text-right flex items-start gap-2.5 shadow-sm">
+            <Phone className="w-4 h-4 text-amber-800 shrink-0 mt-0.5" />
+            <p className="text-xs text-amber-950 leading-relaxed font-semibold">
+              سنتصل بكِ هاتفياً لتأكيد الطلب وتحديد موعد وسعر التوصيل المناسب لولايتكِ وبلديتكِ قبل الشحن 📞
+            </p>
           </div>
 
           {/* 7. Primary Submit Button */}
@@ -580,7 +614,7 @@ export default function QuickOrderCard() {
             {isSubmitting ? (
               <div className="flex items-center gap-2">
                 <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                <span>جاري إرسال طلبكِ إلى قاعدة البيانات...</span>
+                <span>جاري إرسال طلبكِ...</span>
               </div>
             ) : (
               <>

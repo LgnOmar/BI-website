@@ -123,7 +123,7 @@ export default function Footer({ onOrderClick }) {
               onClick={onOrderClick}
               className="w-full py-2.5 rounded-xl bg-cream-200 hover:bg-cream-300 text-[#470923] font-bold text-xs transition-colors shadow-sm"
             >
-              اطلبي بوكس مشكاة (3,900 دج) 🌸
+              اطلبي بوكس مشكاة (2,700 دج) 🌸
             </button>
           </div>
 

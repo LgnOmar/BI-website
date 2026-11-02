@@ -75,7 +75,7 @@ export default function Navbar({ onOrderClick }) {
               <ShoppingBag className="w-4 h-4 text-cream-200 transition-transform group-hover:-translate-y-0.5" />
               <span>اطلبي الآن</span>
               <span className="text-xs bg-plum-800/80 text-cream-200 px-2 py-0.5 rounded-full border border-plum-600">
-                3,900 دج
+                2,700 دج
               </span>
             </button>
           </div>
@@ -122,7 +122,7 @@ export default function Navbar({ onOrderClick }) {
                   className="w-full py-3 rounded-xl text-white bg-[#470923] font-bold text-sm flex items-center justify-center gap-2 shadow-plum"
                 >
                   <ShoppingBag className="w-4 h-4 text-cream-200" />
-                  <span>اطلبي بوكس مشكاة الآن (3,900 دج)</span>
+                  <span>اطلبي بوكس مشكاة الآن (2,700 دج)</span>
                 </button>
               </div>
             </div>

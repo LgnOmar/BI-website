@@ -121,8 +121,8 @@ export default function VideoSection({ onOrderClick }) {
               <div className="flex items-start gap-3 bg-plum-50/60 p-3.5 rounded-2xl border border-plum-100">
                 <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
                 <div>
-                  <h4 className="font-bold text-sm text-[#470923]">حامل خشبي طبيعي ناعم الملمس</h4>
-                  <p className="text-xs text-[#7A5864] mt-0.5">محفور بعناية ليحمل بطاقة اليوم بأناقة على مكتبكِ أو رف الكتب.</p>
+                  <h4 className="font-bold text-sm text-[#470923]">حامل بطاقات مكتبي أنيق ومتين</h4>
+                  <p className="text-xs text-[#7A5864] mt-0.5">مصمم بعناية ليحمل بطاقة اليوم بأناقة على مكتبكِ أو رف الكتب.</p>
                 </div>
               </div>
 

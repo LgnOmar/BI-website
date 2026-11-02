@@ -12,10 +12,10 @@ const MEDIA_ITEMS = [
   },
   {
     type: 'image',
-    src: '/images/box-hero.jpg',
-    title: 'بوكس مشكاة المتكامل مع التغليف الفاخر',
-    badge: 'البوكس الكامل 🌸',
-    thumbLabel: 'البوكس كاملاً',
+    src: '/images/box-new.jpeg',
+    title: 'صورة حقيقية لمكونات بوكس مشكاة الأنيقة',
+    badge: 'مكونات البوكس 📸',
+    thumbLabel: 'مكونات البوكس',
   },
   {
     type: 'image',
@@ -27,9 +27,9 @@ const MEDIA_ITEMS = [
   {
     type: 'image',
     src: '/images/item-2.jpg',
-    title: '2. دفتر التكرار والتثبيت (Spaced Repetition)',
-    badge: 'تثبيت ذكي 🧠',
-    thumbLabel: 'دفتر التثبيت',
+    title: '2. دفتر مشكاة (الحفظ والمراجعة، استوقفتني آية، نصيبي من العلم الشرعي)',
+    badge: '3 أقسام إيمانية ✨',
+    thumbLabel: 'دفتر مشكاة',
   },
   {
     type: 'image',
@@ -41,23 +41,23 @@ const MEDIA_ITEMS = [
   {
     type: 'image',
     src: '/images/item-4.jpg',
-    title: '4. بطاقات تدبر أسماء الله الحسنى + حامل خشبي',
-    badge: '99 بطاقة + حامل 🌿',
+    title: '4. بطاقات تدبر أسماء الله الحسنى (20 بطاقة) + حامل مكتبي أنيق ومتين',
+    badge: '20 بطاقة + حامل 🌿',
     thumbLabel: 'بطاقات الأسماء',
   },
   {
     type: 'image',
     src: '/images/item-5.jpg',
-    title: '5. فواصل مصحفية مغناطيسية راقية',
+    title: '5. فواصل مصحفية مغناطيسية راقية بألوان جذابة',
     badge: 'فواصل مغناطيسية ✨',
     thumbLabel: 'الفواصل',
   },
   {
     type: 'image',
     src: '/images/box-overview.png',
-    title: 'تغليف هدايا ملكي بشريط ساتان وبطاقة إهداء',
-    badge: 'تغليف الهدايا 🎁',
-    thumbLabel: 'التغليف',
+    title: 'علبة بوكس مشكاة الفاخرة الصلبة لحفظ المحتويات',
+    badge: 'العلبة الفاخرة ✨',
+    thumbLabel: 'العلبة الفاخرة',
   },
 ];
 

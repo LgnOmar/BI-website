@@ -136,13 +136,13 @@ export default function ContentsSection({ onOrderClick }) {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 relative z-10">
             <div className="text-center md:text-right space-y-2">
               <span className="inline-block px-3 py-1 rounded-full bg-cream-200/20 text-cream-200 text-xs font-bold">
-                🎁 هدية مجانية مع كل بوكس
+                ✨ علبة فاخرة وأنيقة
               </span>
               <h3 className="text-xl sm:text-2xl font-bold font-amiri text-white">
-                تغليف هدايا ملكي راقٍ + بطاقة إهداء مخصصة
+                تغليف صلب وراقٍ يحفظ جميع محتوياتك
               </h3>
               <p className="text-xs sm:text-sm text-cream-200/80 max-w-xl">
-                يصلكِ البوكس في علبة صلبة فاخرة ملفوفة بشريط ساتان ناعم وبطاقة تهنئة أنيقة، لتكون جاهزة لتقديمها لنفسكِ أو لأغلى الناس على قلبكِ فور استلامها.
+                يصلكِ البوكس في علبة صلبة فاخرة وأنيقة تجمع كل مكونات البوكس بتنسيق بديع، لتكون رفيقتكِ اليومية أو هدية تسر قلب من تحبين.
               </p>
             </div>
 
@@ -151,7 +151,7 @@ export default function ContentsSection({ onOrderClick }) {
               className="px-8 py-3.5 rounded-full bg-gradient-to-r from-cream-200 to-cream-300 hover:from-cream-300 hover:to-cream-400 text-[#470923] font-extrabold text-sm shadow-md transition-all duration-300 hover:scale-105 shrink-0 flex items-center gap-2"
             >
               <ShoppingBag className="w-4 h-4" />
-              <span>اطلبي البوكس المتكامل (3,900 دج)</span>
+              <span>اطلبي البوكس المتكامل (2,700 دج)</span>
             </button>
           </div>
         </div>

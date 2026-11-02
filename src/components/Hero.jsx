@@ -70,7 +70,7 @@ export default function Hero({ onOrderClick }) {
                 </div>
                 <div className="text-xs">
                   <p className="font-bold text-[#470923]">تدبر أسماء الله</p>
-                  <p className="text-plum-700">99 بطاقة مع حامل مكتبي</p>
+                  <p className="text-plum-700">20 بطاقة مع حامل مكتبي أنيق</p>
                 </div>
               </div>
             </div>
@@ -81,14 +81,14 @@ export default function Hero({ onOrderClick }) {
                 <div className="text-right">
                   <div className="flex items-baseline gap-2">
                     <span className="text-3xl sm:text-4xl font-extrabold text-[#470923]">
-                      3,900 <span className="text-xl">دج</span>
+                      2,700 <span className="text-xl">دج</span>
                     </span>
                     <span className="text-base text-gray-400 line-through">
-                      5,400 دج
+                      3,800 دج
                     </span>
                   </div>
                   <span className="text-xs font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full inline-block border border-emerald-200">
-                    وفري 1,500 دج اليوم (خصم 28%)
+                    وفري 1,100 دج اليوم
                   </span>
                 </div>
 
@@ -130,7 +130,7 @@ export default function Hero({ onOrderClick }) {
               <div className="relative rounded-3xl overflow-hidden bg-white p-3 shadow-2xl border-2 border-[#F9EACD]">
                 <div className="relative aspect-[4/4.2] rounded-2xl overflow-hidden bg-[#FCE7EC]/30">
                   <img
-                    src="/images/box-hero.jpg"
+                    src="/images/box-new.jpeg"
                     alt="بوكس مشكاة متكامل لحفظ وتدبر القرآن"
                     className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
                     onError={(e) => {
