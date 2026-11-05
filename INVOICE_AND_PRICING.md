@@ -1,52 +1,50 @@
-# 📄 فاتورة مشروع وتفصيل الأسعار | Freelance Invoice & Pricing Breakdown
-**المشروع:** صفحة هبوط الدفع عند الاستلام - بوكس مشكاة (Mishkat Box COD Landing Page)  
-**العميل:** Graphics by BI (@Graphics.by.Bl)  
-**رقم الفاتورة:** `INV-2026-001`  
-**تاريخ الإصدار:** 05 نوفمبر 2026  
-**الروابط السحابية المباشرة (Google Workspace):**
-- 📄 [عرض الفاتورة الرسمية على Google Docs](https://docs.google.com/document/d/1WILNQqWqHWeOraNLPJiAn9w5dCD0ac4ATUWwihkFNNg/edit?authuser=personal)
-- 📊 [عرض جدول التسعير وساعات العمل على Google Sheets](https://docs.google.com/spreadsheets/d/18l0Th99P_irYg-4P-cMI3WfoFkNaNxsY9dep1igtgIg/edit?authuser=personal)
+# 📑 DesignByBI — Freelance Invoice & Pricing Breakdown Guide
+**Project:** Mishkat Box (بوكس مشكاة) — Bespoke Cash on Delivery (COD) E-Commerce Web App  
+**Client:** Graphics by BI (@Graphics.by.Bl)  
+**Invoice Number:** `INV-2026-001`  
+**Date:** November 5, 2026  
+**Status:** Pending Final Handover Approval  
 
 ---
 
-## 💼 تفصيل بنود العمل والخدمات المنجزة (Itemized Deliverables)
+## 🔗 Direct Deliverables & Links
 
-| # | بند الخدمة | الوصف التقني والوظيفي | المدة التقديرية | السعر المستحق |
-|---|------------|----------------------|-----------------|---------------|
-| **1** | **تطوير واجهة مستخدم مخصصة (Custom UI/UX)** | برمجة كود نظيف بـ React 19 + Tailwind CSS + Vite، فائق السرعة، خفيف، متجاوب 100% مع الهواتف والحواسيب، بدعم كامل للغة العربية (RTL) وهوية بصرية فاخرة. | 12 ساعة | 10,000 دج |
-| **2** | **محرك استمارة الطلب الذكية (Smart COD Engine)** | استمارة شراء بأعلى الصفحة (Above the fold)، فحص أرقام الهواتف الجزائرية (Regex)، دعم 58 ولاية جزائرية ومئات البلديات، وخيارات التوصيل للمنزل أو المكتب (Stop Desk). | 14 ساعة | 12,000 دج |
-| **3** | **نظام باقات الخصم والعروض الترويجية** | برمجة العروض التلقائية (1 علبة، 2 علبة، 3 علب مع توصيل مجاني)، وحاسبة الكمية المخصصة، وتحديث الإجمالي لحظياً لرفع معدل الشراء. | 8 ساعات | 7,000 دج |
-| **4** | **ربط Google Sheets ونظام الإشعارات الفورية** | بناء Webhook عبر Google Apps Script لربط الطلبات بجدول خاص بالعميل بنسبة 100%، وتفعيل إشعارات Gmail فورية بزر اتصال مباشر بالزبونة، بدون أي رسوم خادم شهرية. | 10 ساعات | 9,000 دج |
-| **5** | **ميزات رفع التحويل والوسائط التفاعلية (CRO)** | معرض فيديو وصور هجين، تأثير الاحتفال Confetti، زر تأكيد الطلب عبر الواتساب، شريط الطلب العائم للهواتف، قسم تفاصيل المحتويات، آراء الزبائن، والأسئلة الشائعة. | 6 ساعات | 4,000 دج |
-| **6** | **الإطلاق السحابي والدليل الإرشادي والدعم الفني** | إعداد بيئة الإنتاج السريعة، دليل تسليم تفصيلي خطوة بخطوة باللغة العربية، وضمان دعم فني وتعديلات مجانية لمدة 14 يوماً بعد التسليم. | 4 ساعات | 3,000 دج |
-| **الإجمالي** | **المشروع بالكامل جاهز للتشغيل والتسليم** | **حل متكامل ومخصص بدون اشتراكات شهرية متكررة** | **54 ساعة** | **45,000 دج** |
+1. **📄 Google Docs Official Invoice (Styled & Formatted):**  
+   👉 [**Open Google Doc: DesignByBI - Project Invoice & Scope Breakdown**](https://docs.google.com/document/d/15DMZJhmq3wecwpMGjZwETdLdaPriqfNQ6tc1Kquq1Fg/edit?authuser=personal)  
+   *(Featuring Apple-inspired typography, custom header styling, itemized deliverables, and colored status accents).*
 
----
+2. **📊 Google Sheets Companion Quotation (Financial Breakdown):**  
+   👉 [**Open Google Sheet: Quotation & Pricing Breakdown**](https://docs.google.com/spreadsheets/d/1nRoMrAmOzJqYm7wct9B2utKUi0DwJUy7am7biri8KIE/edit?authuser=personal)  
+   *(Clean spreadsheet model with item numbers, categories, DZD amounts, and USD equivalents).*
 
-## 💰 شروط الدفع والتحويل (Payment Terms)
-
-- **المبلغ الإجمالي:** **45,000 دج جزائري** (أو ما يعادل ~300 دولار أمريكي).
-- **نظام الدفع المقترح:**
-  - **الدفعة الأولى (50% مقدم):** 22,500 دج (تمت أو مستحقة).
-  - **الدفعة النهائية (50% عند التسليم):** 22,500 دج (عند ربط الجدول الخاص بالعميل والتسليم النهائي).
-- **طرق الدفع:**
-  - **بريدي موب (BaridiMob) / CCP:** يتم إرسال رقم الـ RIP ورقم الحساب.
-  - **تحويل بنكي أو نقداً (Cash).**
+3. **💻 Standalone HTML / PDF Printable Invoice:**  
+   👉 [**invoice.html**](file:///c:/Users/hp/Desktop/Apps/DesignByBI/invoice.html)  
+   *(Double-click to open in any web browser, includes a 1-click **"Print / Save as PDF"** button with exact A4 print styles).*
 
 ---
 
-## 💬 رسالة جاهزة للنسخ والإرسال للعميل (WhatsApp / Email Template)
+## 💰 Recommended Market Pricing & Scope Valuation
 
-> *"السلام عليكم أختي/أخي الكريم،*  
-> *أتمنى أن تكون بخير.*  
-> 
-> *يسرّني إعلامك أن موقع وصفحة هبوط **'بوكس مشكاة'** أصبحت جاهزة بالكامل بأعلى معايير السرعة والتصميم المتجاوب لرفع المبيعات.*  
-> 
-> *لقد قمت بإعداد فاتورة رسمية وتفصيل كامل لبنود المشروع وتكاليفه يمكنك الاطلاع عليها مباشرة من هذا الرابط:*  
-> *📄 [رابط الفاتورة الرسمية على Google Docs](https://docs.google.com/document/d/1WILNQqWqHWeOraNLPJiAn9w5dCD0ac4ATUWwihkFNNg/edit?usp=sharing)*  
-> *📊 [جدول تفصيل ساعات العمل والتسعير على Google Sheets](https://docs.google.com/spreadsheets/d/18l0Th99P_irYg-4P-cMI3WfoFkNaNxsY9dep1igtgIg/edit?usp=sharing)*  
-> 
-> *كما أرفقت لكِ دليلاً مبسطاً في دقيقتين لربط جدولكِ واستقبال إشعارات الطلبيات مباشرة على هاتفكِ مع خصوصية كاملة لحسابكِ:*  
-> *تجدين كافة التفاصيل مرفقة، وسأكون معكِ خطوة بخطوة حتى وصول أولى الطلبيات بنجاح إن شاء الله.*  
-> 
-> *شكراً جزيلاً لتعاملك الراقي وبالتوفيق للمتجر! 🌸"*
+### Algerian Parallel Market Currency Context (Square Rate)
+In the Algerian market, foreign currency equivalents are benchmarked against the real parallel market rate:
+* **$1 USD ≈ 250 DZD**
+* **€1 EUR ≈ 270 DZD**
+
+### Itemized Scope Breakdown
+| # | Deliverable Module | Category | Investment (DZD) | Equivalent (Parallel Market) |
+|---|---|---|---|---|
+| **01** | **UI/UX Strategy, Brand Art Direction & Arabic RTL System**<br>• Custom luxury Islamic branding (#470923 Deep Burgundy, Gold/Rose accents)<br>• Amiri Quranic Calligraphy + Tajawal modern Arabic typography<br>• Above-the-fold conversion architecture (Media Gallery & Form side-by-side)<br>• Micro-interactions & celebratory confetti animations | Design & CRO | 18,000 DZD | ~$72 USD |
+| **02** | **High-Performance Frontend Engineering (React 19, Tailwind, Vite)**<br>• Sub-second load speed (< 1.2s) optimized for Algerian 3G/4G<br>• Interactive Media Gallery (Embedded MP4 video player + multi-photo sync)<br>• Dynamic 4-Tier Pricing Calculator (1, 2, 3 boxes with Free Shipping, Custom)<br>• Mobile sticky CTA bar with auto-scroll trigger | Engineering | 24,000 DZD | ~$96 USD |
+| **03** | **Algerian Domestic Logistics Engine (58 Wilayas & Communes)**<br>• Full 58 Wilayas database with dynamic real-time commune filtering<br>• Manual commune fallback input for remote areas<br>• Home Delivery vs. Stop Desk (المكتب) selectors<br>• Algerian telephone regex validation (05, 06, 07, 02) | Logistics Engine | 12,000 DZD | ~$48 USD |
+| **04** | **Serverless Backend & CRM Automation (Google Sheets API)**<br>• Google Apps Script webhook logging orders to private Google Sheet<br>• Automated instant Gmail order notification with 1-click phone calling<br>• 100% private client ownership protocol (zero developer access to customer data)<br>• WhatsApp instant backup confirmation button<br>• Zero monthly database or server hosting fees | Backend & Cloud | 11,000 DZD | ~$44 USD |
+| | **Gross Subtotal** | | **65,000 DZD** | **~$260 USD** |
+| | **Introductory Client Privilege (First Project Courtesy)** | | **-5,000 DZD** | **-$20 USD** |
+| | **TOTAL PAYABLE AMOUNT** | | **60,000 DZD** | **~$240 USD / ~€222 EUR** |
+
+---
+
+## 🤝 Accepted Settlement Methods
+1. **BaridiMob / CCP (Algérie Poste):** RIP & account number supplied upon invoice confirmation.
+2. **Cash on Final Handover:** Direct settlement during final walkthrough.
+3. **Bank Transfer:** Available upon request.
+

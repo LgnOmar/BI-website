@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invoice INV-2026-012 | Graphics by BI — Mishkat Box Web App</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Tajawal:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, 'Tajawal', sans-serif;
+      --color-primary: #470923;
+      --color-primary-light: #6A1437;
+      --color-primary-soft: #FDF2F4;
+      --color-accent-gold: #C5A059;
+      --color-accent-gold-soft: #FAF4E8;
+      --color-text-main: #1D1D1F;
+      --color-text-muted: #6E6E73;
+      --color-text-subtle: #86868B;
+      --color-bg-page: #F5F5F7;
+      --color-card-bg: #FFFFFF;
+      --color-border: #E5E5EA;
+      --color-border-subtle: #F2F2F7;
+      --color-success: #107C41;
+      --color-success-bg: #E8F5E9;
+      --color-warning: #B45309;
+      --color-warning-bg: #FEF3C7;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background-color: var(--color-bg-page);
+      color: var(--color-text-main);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      padding: 40px 20px;
+    }
+
+    .action-bar {
+      max-width: 860px;
+      margin: 0 auto 24px auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 20px;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    .action-bar .brand-badge {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--color-primary);
+    }
+
+    .action-bar .brand-badge .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--color-primary);
+      border-radius: 50%;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 980px;
+      cursor: pointer;
+      border: none;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      text-decoration: none;
+    }
+
+    .btn-primary {
+      background: var(--color-primary);
+      color: #FFFFFF;
+      box-shadow: 0 2px 8px rgba(71, 9, 35, 0.25);
+    }
+
+    .btn-primary:hover {
+      background: var(--color-primary-light);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      background: #F2F2F7;
+      color: var(--color-text-main);
+    }
+
+    .btn-secondary:hover {
+      background: #E5E5EA;
+    }
+
+    /* Invoice Paper Container (A4 Proportional) */
+    .invoice-card {
+      max-width: 860px;
+      margin: 0 auto;
+      background: var(--color-card-bg);
+      border-radius: 20px;
+      border: 1px solid var(--color-border);
+      padding: 56px 64px;
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.06), 0 0 1px 1px rgba(0, 0, 0, 0.03);
+      position: relative;
+    }
+
+    /* Header Section */
+    .invoice-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--color-border-subtle);
+      padding-bottom: 32px;
+      margin-bottom: 32px;
+    }
+
+    .brand-title {
+      font-size: 26px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-subtitle {
+      font-size: 13px;
+      color: var(--color-text-muted);
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    .invoice-tag-block {
+      text-align: right;
+    }
+
+    .invoice-label {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--color-accent-gold);
+      margin-bottom: 4px;
+    }
+
+    .invoice-number {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--color-text-main);
+    }
+
+    .status-pill {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 4px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: 980px;
+      background: var(--color-warning-bg);
+      color: var(--color-warning);
+    }
+
+    /* Meta Information Grid */
+    .invoice-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 28px;
+      margin-bottom: 40px;
+      padding: 24px;
+      background: #FBFBFC;
+      border-radius: 14px;
+      border: 1px solid var(--color-border-subtle);
+    }
+
+    .meta-column h4 {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-text-subtle);
+      margin-bottom: 8px;
+    }
+
+    .meta-column p {
+      font-size: 14px;
+      color: var(--color-text-main);
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .meta-column .sub-detail {
+      font-size: 12px;
+      color: var(--color-text-muted);
+      font-weight: 400;
+      margin-top: 3px;
+    }
+
+    /* Scope & Value Narrative */
+    .executive-summary {
+      margin-bottom: 36px;
+      padding: 20px 24px;
+      border-left: 3px solid var(--color-primary);
+      background: var(--color-primary-soft);
+      border-radius: 0 12px 12px 0;
+    }
+
+    .executive-summary h3 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--color-primary);
+      margin-bottom: 6px;
+    }
+
+    .executive-summary p {
+      font-size: 13px;
+      color: #4A152B;
+      line-height: 1.6;
+    }
+
+    /* Table Styles */
+    .table-wrapper {
+      margin-bottom: 36px;
+    }
+
+    .table-title {
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--color-text-main);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+
+    th {
+      text-align: left;
+      padding: 12px 16px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-text-subtle);
+      border-bottom: 1px solid var(--color-border);
+      background: #FAFAFB;
+    }
+
+    th.text-right,
+    td.text-right {
+      text-align: right;
+    }
+
+    th.text-center,
+    td.text-center {
+      text-align: center;
+    }
+
+    td {
+      padding: 16px;
+      border-bottom: 1px solid var(--color-border-subtle);
+      vertical-align: top;
+    }
+
+    tr:last-child td {
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .item-title {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--color-text-main);
+      margin-bottom: 4px;
+    }
+
+    .item-desc {
+      font-size: 12px;
+      color: var(--color-text-muted);
+      line-height: 1.5;
+    }
+
+    .tag-badge {
+      display: inline-block;
+      margin-top: 6px;
+      padding: 2px 8px;
+      font-size: 10px;
+      font-weight: 600;
+      border-radius: 6px;
+      background: #F2F2F7;
+      color: var(--color-text-muted);
+    }
+
+    .item-price {
+      font-weight: 700;
+      font-size: 14px;
+      color: var(--color-text-main);
+      white-space: nowrap;
+    }
+
+    .item-sub-price {
+      font-size: 11px;
+      color: var(--color-text-subtle);
+      margin-top: 2px;
+    }
+
+    /* Financial Summary Totals */
+    .totals-container {
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 40px;
+    }
+
+    .totals-table {
+      width: 360px;
+    }
+
+    .totals-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      font-size: 13px;
+      color: var(--color-text-muted);
+    }
+
+    .totals-row.discount {
+      color: #DC2626;
+      font-weight: 600;
+    }
+
+    .totals-row.grand-total {
+      border-top: 2px solid var(--color-border);
+      margin-top: 8px;
+      padding-top: 14px;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--color-primary);
+    }
+
+    .grand-total .total-amount {
+      font-size: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    .grand-total-sub {
+      text-align: right;
+      font-size: 12px;
+      color: var(--color-text-subtle);
+      margin-top: 2px;
+      font-weight: 500;
+    }
+
+    /* Settlement & Payment Instructions */
+    .settlement-card {
+      background: #FBFBFC;
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+      padding: 24px;
+      margin-bottom: 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .settlement-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-text-subtle);
+      margin-bottom: 10px;
+    }
+
+    .settlement-item {
+      font-size: 13px;
+      margin-bottom: 6px;
+      color: var(--color-text-main);
+    }
+
+    .settlement-item strong {
+      color: var(--color-primary);
+    }
+
+    /* Signature & Note Section */
+    .invoice-footer {
+      border-top: 1px solid var(--color-border-subtle);
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      font-size: 12px;
+      color: var(--color-text-subtle);
+    }
+
+    .footer-terms p {
+      margin-bottom: 4px;
+    }
+
+    .signature-box {
+      text-align: right;
+    }
+
+    .signature-line {
+      width: 180px;
+      height: 1px;
+      background: var(--color-border);
+      margin-top: 36px;
+      margin-bottom: 6px;
+      margin-left: auto;
+    }
+
+    /* Print Calibration */
+    @media print {
+      body {
+        background: #FFFFFF;
+        padding: 0;
+      }
+
+      .action-bar {
+        display: none !important;
+      }
+
+      .invoice-card {
+        border: none;
+        box-shadow: none;
+        padding: 0;
+        max-width: 100%;
+      }
+
+      @page {
+        margin: 1.5cm;
+        size: A4;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Top Action Bar (hidden when printed) -->
+  <div class="action-bar">
+    <div class="brand-badge">
+      <span class="dot"></span>
+      Project Invoice • Mishkat Box (Graphics by BI)
+    </div>
+    <div class="btn-group">
+      <button class="btn btn-secondary" onclick="window.print()">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="6 9 6 2 18 2 18 9"></polyline>
+          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+          <rect x="6" y="14" width="12" height="8"></rect>
+        </svg>
+        Print / Save as PDF
+      </button>
+      <a class="btn btn-primary"
+        href="https://docs.google.com/document/d/15DMZJhmq3wecwpMGjZwETdLdaPriqfNQ6tc1Kquq1Fg/edit?authuser=personal"
+        target="_blank">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+          <polyline points="14 2 14 8 20 8"></polyline>
+          <line x1="16" y1="13" x2="8" y2="13"></line>
+          <line x1="16" y1="17" x2="8" y2="17"></line>
+        </svg>
+        Open in Google Docs
+      </a>
+    </div>
+  </div>
+
+  <!-- Main Invoice Paper -->
+  <div class="invoice-card">
+
+    <!-- Header -->
+    <header class="invoice-header">
+      <div>
+        <h1 class="brand-title">
+          <span>Website Design & Development</span>
+        </h1>
+        <p class="brand-subtitle">Custom E-Commerce Landing Page & Automated Order System</p>
+      </div>
+      <div class="invoice-tag-block">
+        <div class="invoice-label">Project Invoice</div>
+        <div class="invoice-number">INV-2026-012</div>
+        <span class="status-pill">Due on Handover</span>
+      </div>
+    </header>
+
+    <!-- Metadata Grid -->
+    <section class="invoice-meta-grid">
+      <div class="meta-column">
+        <h4>Billed To (Client)</h4>
+        <p>Graphics by BI</p>
+        <div class="sub-detail">Brand: @Graphics.by.Bl</div>
+        <div class="sub-detail">Algiers, Algeria 🇩🇿</div>
+      </div>
+      <div class="meta-column">
+        <h4>Project Details</h4>
+        <p>Mishkat Box (بوكس مشكاة)</p>
+        <div class="sub-detail">Bespoke COD Web Application</div>
+        <div class="sub-detail">Platform: React 19 + Vite + Tailwind</div>
+      </div>
+      <div class="meta-column">
+        <h4>Dates & Terms</h4>
+        <p>Issue Date: Nov 5, 2026</p>
+        <div class="sub-detail">Terms: Net 0 (Upon Completion)</div>
+        <div class="sub-detail">Currency: DZD (Algerian Dinar)</div>
+      </div>
+    </section>
+
+    <!-- Narrative & Scope of Value -->
+    <div class="executive-summary">
+      <h3>Project Overview & Scope</h3>
+      <p>
+        This invoice covers the complete design, development, and order automation for the <strong>Mishkat Box (بوكس مشكاة)</strong> Cash on Delivery (COD) landing page. Built with React and Tailwind CSS, the website provides ultra-fast mobile loading, complete integration for all 58 Algerian Wilayas and communes, zero monthly server fees, and automated order logging directly into Google Sheets.
+      </p>
+    </div>
+
+    <!-- Line Items Table -->
+    <div class="table-wrapper">
+      <div class="table-title">
+        <span>Itemized Scope of Deliverables</span>
+        <span style="font-size: 12px; font-weight: 500; color: var(--color-text-muted);">4 Comprehensive Modules</span>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width: 50px;" class="text-center">#</th>
+            <th>Deliverable & Detailed Scope</th>
+            <th style="width: 130px;">Category</th>
+            <th style="width: 150px;" class="text-right">Investment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="text-center" style="font-weight: 600; color: var(--color-text-subtle);">01</td>
+            <td>
+              <div class="item-title">UI/UX Strategy, Brand Identity & Art Direction</div>
+              <div class="item-desc">
+                Custom luxury Islamic aesthetic tailored to Graphics by BI (#470923 Deep Burgundy, Gold & Soft Rose
+                accents). Complete Arabic RTL typography system (Amiri calligraphy + Tajawal), conversion-focused
+                above-the-fold layout, interactive media gallery with video integration, micro-animations, and
+                celebratory confetti.
+              </div>
+              <span class="tag-badge">Design & Conversion Rate Optimization</span>
+            </td>
+            <td>
+              <span style="font-weight: 600; font-size: 12px;">UI/UX & Art</span>
+            </td>
+            <td class="text-right">
+              <div class="item-price">18,000 DZD</div>
+              <div class="item-sub-price">~$72 USD</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-center" style="font-weight: 600; color: var(--color-text-subtle);">02</td>
+            <td>
+              <div class="item-title">High-Performance Frontend Engineering (React 19 + Tailwind)</div>
+              <div class="item-desc">
+                Single Page Application (SPA) architecture optimized for lightning-fast loading on Algerian mobile
+                connections. Includes interactive Video & Photo Carousel, dynamic 4-tier quantity & price calculator (1
+                box, 2 boxes, 3 boxes with Free Delivery badge, custom bulk pack), and mobile sticky order CTA bar.
+              </div>
+              <span class="tag-badge">Frontend Engineering</span>
+            </td>
+            <td>
+              <span style="font-weight: 600; font-size: 12px;">Development</span>
+            </td>
+            <td class="text-right">
+              <div class="item-price">24,000 DZD</div>
+              <div class="item-sub-price">~$96 USD</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-center" style="font-weight: 600; color: var(--color-text-subtle);">03</td>
+            <td>
+              <div class="item-title">Algerian Logistics Engine (58 Wilayas & Communes)</div>
+              <div class="item-desc">
+                Full 58 Wilayas dataset integration with dynamic real-time commune population, manual commune fallback
+                entry, Home Delivery vs. Stop Desk (المكتب) selectors, and strict Algerian phone number validation
+                algorithm (05, 06, 07, 02).
+              </div>
+              <span class="tag-badge">Domestic Logistics</span>
+            </td>
+            <td>
+              <span style="font-weight: 600; font-size: 12px;">Logistics Engine</span>
+            </td>
+            <td class="text-right">
+              <div class="item-price">12,000 DZD</div>
+              <div class="item-sub-price">~$48 USD</div>
+            </td>
+          </tr>
+          <tr>
+            <td class="text-center" style="font-weight: 600; color: var(--color-text-subtle);">04</td>
+            <td>
+              <div class="item-title">Serverless Backend & CRM Database (Google Sheets API)</div>
+              <div class="item-desc">
+                Custom Google Apps Script webhook integration logging all customer orders directly into a 100% private
+                Google Sheet. Includes automated instant Gmail order alerts with 1-click customer phone dialing,
+                WhatsApp backup confirmation button, and zero recurring monthly hosting or database costs.
+              </div>
+              <span class="tag-badge">Backend & Cloud Automation</span>
+            </td>
+            <td>
+              <span style="font-weight: 600; font-size: 12px;">Cloud Automation</span>
+            </td>
+            <td class="text-right">
+              <div class="item-price">11,000 DZD</div>
+              <div class="item-sub-price">~$44 USD</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Financial Totals -->
+    <div class="totals-container">
+      <div class="totals-table">
+        <div class="totals-row">
+          <span>Gross Subtotal:</span>
+          <span style="font-weight: 600; color: var(--color-text-main);">65,000 DZD</span>
+        </div>
+        <div class="totals-row discount">
+          <span>Introductory Client Privilege:</span>
+          <span>- 5,000 DZD</span>
+        </div>
+        <div class="totals-row grand-total">
+          <span>Total Balance Due:</span>
+          <span class="total-amount">60,000 DZD</span>
+        </div>
+        <div class="grand-total-sub">Equivalent: ~$240 USD / ~€222 EUR (Parallel Market Rate: $1 ≈ 250 DZD | €1 ≈ 270
+          DZD)</div>
+      </div>
+    </div>
+
+    <!-- Payment & Handover Guarantee -->
+    <div class="settlement-card">
+      <div>
+        <div class="settlement-title">Accepted Settlement Methods</div>
+        <div class="settlement-item">💳 <strong>BaridiMob / CCP:</strong> Rip & Account details provided upon request
+        </div>
+        <div class="settlement-item">🤝 <strong>Cash on Handover:</strong> Payable upon live project walkthrough</div>
+        <div class="settlement-item">🏦 <strong>Bank Wire Transfer:</strong> Accepted (Algerian Dinar)</div>
+      </div>
+      <div>
+        <div class="settlement-title">Handover & Warranty Guarantee</div>
+        <div class="settlement-item">🛡️ <strong>100% Code Ownership:</strong> Full source code, assets, and repository
+          rights transferred to client.</div>
+        <div class="settlement-item">🔒 <strong>Privacy Assurance:</strong> Zero developer access to the client's
+          private order database.</div>
+        <div class="settlement-item">✨ <strong>30-Day Support:</strong> Complimentary bug-fix guarantee post-handover.
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer & Sign-off -->
+    <footer class="invoice-footer">
+      <div class="footer-terms">
+        <p>Thank you for partnering with us.</p>
+        <p>Crafted with perfection for <strong>Graphics by BI</strong> • Mishkat Box 2026</p>
+      </div>
+      <div class="signature-box">
+        <div class="signature-line"></div>
+        <div style="font-weight: 600; color: var(--color-text-main);">Authorized Signature</div>
+        <div style="font-size: 11px;">Lead Software Engineer & Developer</div>
+      </div>
+    </footer>
+
+  </div>
+
+</body>
+
+</html>
