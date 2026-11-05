@@ -12,7 +12,6 @@ import {
   MapPin,
   ShieldCheck,
   AlertCircle,
-  MessageCircle,
   Plus,
   Minus
 } from 'lucide-react';
@@ -265,22 +264,9 @@ export default function QuickOrderCard() {
             </div>
           </div>
 
-          {/* WhatsApp Direct Confirmation */}
-          <a
-            href={`https://wa.me/?text=${encodeURIComponent(
-              `السلام عليكم، قمت بطلب بوكس مشكاة برقم مرجعي ${submittedData.orderId} باسم ${submittedData.fullName}، الكمية: ${submittedData.quantity}. أود تأكيد طلبي من فضلكم.`
-            )}`}
-            target="_blank"
-            rel="noreferrer"
-            className="w-full py-3 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-md transition-all"
-          >
-            <MessageCircle className="w-4 h-4" />
-            <span>تأكيد فوري عبر الواتساب</span>
-          </a>
-
           <button
             onClick={handleReset}
-            className="w-full py-2.5 rounded-xl bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-xs transition-colors"
+            className="w-full py-3 rounded-2xl bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold text-xs sm:text-sm transition-colors mt-2"
           >
             طلب بوكس آخر
           </button>
