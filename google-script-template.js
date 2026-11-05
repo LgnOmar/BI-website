@@ -1,6 +1,6 @@
 /**
  * ============================================================================
- * GOOGLE APPS SCRIPT FOR MISHKAT BOX (بوكس مشكاة) - WITH INSTANT EMAIL ALERTS
+ * GOOGLE APPS SCRIPT FOR MISHKAT BOX (بوكس مشكاة) - TELEGRAM + GMAIL ALERTS
  * ============================================================================
  * 
  * طريقة الإعداد في دقيقتين (لصاحب المتجر / العميل):
@@ -18,23 +18,31 @@
  *    J1: ملاحظات (Notes)
  * 
  * 3. من القائمة العلوية اضغط: إضافات (Extensions) -> Apps Script.
- * 4. امسح أي كود موجود والصق هذا الكود بالكامل، ثم اضغط حفظ (Ctrl + S).
- * 5. اضغط على زر: نشر (Deploy) -> نشر جديد (New deployment).
- * 6. اضغط على أيقونة الترس (اختر النوع) واختر: تطبيق ويب (Web app).
- * 7. املأ الإعدادات كالتالي:
+ * 4. امسح أي كود موجود والصق هذا الكود بالكامل.
+ * 5. ضع توكن بوت تليجرام ومعرف الشات (TELEGRAM_BOT_TOKEN و TELEGRAM_CHAT_ID) في السطرين 35 و 36 أدناه.
+ * 6. اضغط حفظ (Ctrl + S).
+ * 7. اضغط على زر: نشر (Deploy) -> نشر جديد (New deployment).
+ * 8. اضغط على أيقونة الترس (اختر النوع) واختر: تطبيق ويب (Web app).
+ * 9. املأ الإعدادات كالتالي:
  *    - الوصف (Description): Mishkat Order Webhook
  *    - التنفيذ باسم (Execute as): حسابي (Me)  <-- هام جداً
  *    - من يملك حق الوصول (Who has access): أي شخص (Anyone)  <-- هام جداً
- * 8. اضغط Deploy (نشر)، ثم امنح الأذونات لحسابك (Authorize access).
- * 9. انسخ رابط تطبيق الويب الناتج (Web app URL) وأرسله للمطور لوضعه في الموقع.
+ * 10. اضغط Deploy (نشر)، ثم امنح الأذونات لحسابك (Authorize access).
+ * 11. انسخ رابط تطبيق الويب الناتج (Web app URL) وأرسله للمطور لوضعه في الموقع.
  * ============================================================================
  */
+
+// ============================================================================
+// ⚙️ إعدادات إشعارات تليجرام (TELEGRAM CONFIGURATION)
+// ============================================================================
+const TELEGRAM_BOT_TOKEN = "9019390514:AAEOn85RImUHSWNUbEwaTUul1jSA9J2r2qA"; // @mishkat_bi_bot
+const TELEGRAM_CHAT_ID = "722219458";                                         // Chat ID
 
 function doPost(e) {
   try {
     const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
     const data = JSON.parse(e.postData.contents);
-    
+
     const orderId = data.orderId || ('MSH-' + Math.floor(10000 + Math.random() * 90000));
     const createdAt = data.createdAt || new Date().toLocaleString('ar-DZ');
     const fullName = data.fullName || 'زبونة مجهولة';
@@ -60,11 +68,46 @@ function doPost(e) {
       notes
     ]);
 
-    // 2. إرسال إشعار فوري إلى بريد الجيميل (Gmail) الخاص بصاحب المتجر
+    // 2. إرسال إشعار فوري إلى تيليجرام (Telegram Push Alert)
+    if (TELEGRAM_BOT_TOKEN && TELEGRAM_BOT_TOKEN !== "PASTE_YOUR_BOT_TOKEN_HERE" && TELEGRAM_CHAT_ID && TELEGRAM_CHAT_ID !== "PASTE_YOUR_CHAT_ID_HERE") {
+      try {
+        const cleanPhone = (phone || '').replace(/[\s\-\.]/g, '');
+        const telegramMessage =
+          `🌸 *وصلتكِ طلبية جديدة لبوكس مشكاة!* 🔔\n\n` +
+          `🆔 *رقم الطلب:* \`${orderId}\`\n` +
+          `👤 *اسم الزبونة:* *${fullName}*\n` +
+          `📞 *رقم الهاتف:* \`${phone}\`\n` +
+          `📍 *الولاية والبلدية:* *${wilaya}* - ${commune}\n` +
+          `🚚 *نوع الاستلام:* ${deliveryType}\n` +
+          `📦 *الكمية:* *${quantity}*\n` +
+          `💰 *المبلغ الإجمالي:* *${totalPrice}*\n` +
+          (notes ? `📝 *ملاحظات:* ${notes}\n` : '') +
+          `⏰ *التاريخ:* ${createdAt}\n\n` +
+          `👉 *اتصال بالزبونة:* [اضغط هنا للاتصال هاتفياً](tel:${cleanPhone})\n` +
+          `📊 [فتح جدول الطلبيات في Google Sheets](${SpreadsheetApp.getActiveSpreadsheet().getUrl()})`;
+
+        UrlFetchApp.fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+          method: "post",
+          contentType: "application/json",
+          payload: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: telegramMessage,
+            parse_mode: "Markdown",
+            disable_web_page_preview: true
+          }),
+          muteHttpExceptions: true
+        });
+        console.log("Telegram notification dispatched successfully.");
+      } catch (tgError) {
+        console.warn("Could not dispatch Telegram alert: " + tgError.toString());
+      }
+    }
+
+    // 3. إرسال إشعار فوري إلى بريد الجيميل (Gmail) الخاص بصاحب المتجر
     try {
       const storeOwnerEmail = Session.getEffectiveUser().getEmail();
       const emailSubject = `🔔 طلبية جديدة: ${orderId} | ${fullName} (${wilaya})`;
-      
+
       const emailHtml = `
         <div dir="rtl" style="font-family: Arial, Tahoma, sans-serif; background-color: #FAF6F0; padding: 25px; color: #333333; line-height: 1.6;">
           <div style="max-width: 550px; margin: 0 auto; background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.06); border-top: 6px solid #470923;">
@@ -126,7 +169,7 @@ function doPost(e) {
               </div>
 
               <div style="text-align: center; margin-top: 20px;">
-                <a href="https://docs.google.com/spreadsheets/d/${sheet.getParent().getId()}" target="_blank" style="color: #470923; font-size: 13px; text-decoration: underline;">
+                <a href="${SpreadsheetApp.getActiveSpreadsheet().getUrl()}" target="_blank" style="color: #470923; font-size: 13px; text-decoration: underline;">
                   📊 فتح جدول الطلبيات في Google Sheets
                 </a>
               </div>
@@ -164,4 +207,21 @@ function doPost(e) {
 
 function doGet(e) {
   return ContentService.createTextOutput("Mishkat Box Webhook with Instant Email Alerts is running smoothly.");
+}
+
+/**
+ * دالة لاختبار إرسال تيليجرام ومنح الصلاحيات (Authorization) بنقرة واحدة داخل Apps Script:
+ * اختر هذه الدالة من القائمة العلوية واضغط Run (تشغيل)
+ */
+function testTelegram() {
+  const telegramMessage = "🌸 تجربة إشعار تيليجرام من داخل Google Apps Script: الربط يعمل بنجاح! 🚀";
+  const res = UrlFetchApp.fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+    method: "post",
+    contentType: "application/json",
+    payload: JSON.stringify({
+      chat_id: TELEGRAM_CHAT_ID,
+      text: telegramMessage
+    })
+  });
+  Logger.log("Telegram Response: " + res.getContentText());
 }
