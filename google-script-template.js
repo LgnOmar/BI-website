@@ -34,9 +34,11 @@
 
 // ============================================================================
 // ⚙️ إعدادات إشعارات تليجرام (TELEGRAM CONFIGURATION)
+// للأمان: يمكنك وضع القيم هنا أو حفظها في Script Properties (إعدادات المشروع)
 // ============================================================================
-const TELEGRAM_BOT_TOKEN = "9019390514:AAEOn85RImUHSWNUbEwaTUul1jSA9J2r2qA"; // @mishkat_bi_bot
-const TELEGRAM_CHAT_ID = "722219458";                                         // Chat ID
+const SCRIPT_PROPS = PropertiesService.getScriptProperties();
+const TELEGRAM_BOT_TOKEN = SCRIPT_PROPS.getProperty('TELEGRAM_BOT_TOKEN') || "YOUR_TELEGRAM_BOT_TOKEN";
+const TELEGRAM_CHAT_ID = SCRIPT_PROPS.getProperty('TELEGRAM_CHAT_ID') || "YOUR_TELEGRAM_CHAT_ID";
 
 function doPost(e) {
   try {
