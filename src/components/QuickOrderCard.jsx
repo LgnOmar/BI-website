@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { WILAYAS } from '../data/wilayas';
-import { 
-  ShoppingBag, 
-  Truck, 
-  Home, 
-  Building2, 
-  CheckCircle2, 
-  Sparkles, 
-  Phone, 
-  User, 
-  MapPin, 
-  ShieldCheck, 
+import {
+  ShoppingBag,
+  Truck,
+  Home,
+  Building2,
+  CheckCircle2,
+  Sparkles,
+  Phone,
+  User,
+  MapPin,
+  ShieldCheck,
   AlertCircle,
   MessageCircle,
   Plus,
@@ -23,7 +23,7 @@ const BASE_SINGLE_PRICE = 2700;
 const ORIGINAL_SINGLE_PRICE = 3800;
 
 // Google Apps Script Webhook URL (with fallback to user's configured script)
-const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbw04MPf7VOW56-OP1p7RpW-rMrp2ImMDsCtUGqvl_E_ltL4I5VHg0fyaFZOQN1-e9k4Ug/exec";
+const DEFAULT_GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbyXycpz92wOipMlINCxGsIf6AKEPnFyPc5GbgFnqBNW1f1Z55sjAJOeJ--sCqHH2k2B/exec";
 
 export default function QuickOrderCard() {
   // Form fields
@@ -33,7 +33,7 @@ export default function QuickOrderCard() {
   const [selectedCommune, setSelectedCommune] = useState('');
   const [customCommune, setCustomCommune] = useState('');
   const [deliveryType, setDeliveryType] = useState('home'); // 'home' or 'desk'
-  
+
   // Quantity states: 1, 2, 3, or 'custom'
   const [quantityTier, setQuantityTier] = useState(1);
   const [customQuantity, setCustomQuantity] = useState(4);
@@ -123,7 +123,7 @@ export default function QuickOrderCard() {
 
     const finalCommune = selectedCommune === 'other' ? customCommune.trim() : selectedCommune;
     const orderId = 'MSH-' + Math.floor(10000 + Math.random() * 90000);
-    
+
     const orderPayload = {
       orderId,
       createdAt: new Date().toLocaleString('ar-DZ'),
@@ -165,7 +165,7 @@ export default function QuickOrderCard() {
         origin: { y: 0.6 },
         colors: ['#470923', '#F9EACD', '#D4AF37'],
       });
-    } catch (e) {}
+    } catch (e) { }
 
     setSubmittedData(orderPayload);
     setIsSubmitting(false);
@@ -182,7 +182,7 @@ export default function QuickOrderCard() {
 
   return (
     <div id="quick-order-card" className="w-full max-w-full bg-white rounded-3xl p-4 sm:p-6 lg:p-7 border-2 border-[#470923]/25 shadow-2xl relative text-right">
-      
+
       {/* Top Banner inside card */}
       <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-plum-100">
         <div>
@@ -288,23 +288,22 @@ export default function QuickOrderCard() {
       ) : (
         /* Order Form */
         <form onSubmit={handleSubmit} className="space-y-4">
-          
+
           {/* 1. Quantity Selector: 1, 2, 3 or Custom */}
           <div className="space-y-2">
             <label className="block text-xs font-bold text-[#470923]">
               اختاري الكمية المطلوبة:
             </label>
-            
+
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-3">
               {/* Option 1: 1 Box */}
               <button
                 type="button"
                 onClick={() => setQuantityTier(1)}
-                className={`pt-4 pb-2.5 px-2 rounded-xl border-2 text-center transition-all flex flex-col justify-between items-center ${
-                  quantityTier === 1
+                className={`pt-4 pb-2.5 px-2 rounded-xl border-2 text-center transition-all flex flex-col justify-between items-center ${quantityTier === 1
                     ? 'border-[#470923] bg-plum-50/80 text-[#470923] shadow-sm'
                     : 'border-gray-200 hover:border-plum-200 text-gray-700 bg-white'
-                }`}
+                  }`}
               >
                 <span className="text-xs font-extrabold">1 بوكس</span>
                 <span className="text-xs font-bold text-[#470923] my-0.5">2,700 دج</span>
@@ -315,11 +314,10 @@ export default function QuickOrderCard() {
               <button
                 type="button"
                 onClick={() => setQuantityTier(2)}
-                className={`pt-4 pb-2.5 px-2 rounded-xl border-2 text-center transition-all flex flex-col justify-between items-center relative ${
-                  quantityTier === 2
+                className={`pt-4 pb-2.5 px-2 rounded-xl border-2 text-center transition-all flex flex-col justify-between items-center relative ${quantityTier === 2
                     ? 'border-[#470923] bg-plum-50/80 text-[#470923] shadow-sm'
                     : 'border-gray-200 hover:border-plum-200 text-gray-700 bg-white'
-                }`}
+                  }`}
               >
                 <span className="absolute -top-2.5 inset-x-0 mx-auto w-max bg-[#470923] text-cream-200 text-[9px] font-bold px-2 py-0.5 rounded-full shadow-sm whitespace-nowrap">
                   الأكثر طلباً ⭐
@@ -333,11 +331,10 @@ export default function QuickOrderCard() {
               <button
                 type="button"
                 onClick={() => setQuantityTier(3)}
-                className={`pt-4 pb-2.5 px-2 rounded-xl border-2 text-center transition-all flex flex-col justify-between items-center relative ${
-                  quantityTier === 3
+                className={`pt-4 pb-2.5 px-2 rounded-xl border-2 text-center transition-all flex flex-col justify-between items-center relative ${quantityTier === 3
                     ? 'border-[#470923] bg-plum-50/80 text-[#470923] shadow-sm'
                     : 'border-gray-200 hover:border-plum-200 text-gray-700 bg-white'
-                }`}
+                  }`}
               >
                 <span className="absolute -top-2.5 inset-x-0 mx-auto w-max bg-emerald-700 text-white text-[9px] font-bold px-2 py-0.5 rounded-full shadow-sm whitespace-nowrap">
                   توصيل مجاني 🎁
@@ -351,11 +348,10 @@ export default function QuickOrderCard() {
               <button
                 type="button"
                 onClick={() => setQuantityTier('custom')}
-                className={`pt-4 pb-2.5 px-2 rounded-xl border-2 text-center transition-all flex flex-col justify-between items-center ${
-                  quantityTier === 'custom'
+                className={`pt-4 pb-2.5 px-2 rounded-xl border-2 text-center transition-all flex flex-col justify-between items-center ${quantityTier === 'custom'
                     ? 'border-[#470923] bg-plum-50/80 text-[#470923] shadow-sm'
                     : 'border-gray-200 hover:border-plum-200 text-gray-700 bg-white'
-                }`}
+                  }`}
               >
                 <span className="text-xs font-extrabold">كمية أخرى</span>
                 <span className="text-xs font-bold text-[#470923] my-0.5">2,300 دج/ب</span>
@@ -407,11 +403,10 @@ export default function QuickOrderCard() {
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 placeholder="مثال: مريم بلقاسم"
-                className={`w-full px-3.5 py-2.5 rounded-xl border text-base sm:text-sm text-right focus:outline-none focus:ring-2 pr-9 ${
-                  errors.fullName 
-                    ? 'border-rose-400 focus:ring-rose-200 bg-rose-50/20' 
+                className={`w-full px-3.5 py-2.5 rounded-xl border text-base sm:text-sm text-right focus:outline-none focus:ring-2 pr-9 ${errors.fullName
+                    ? 'border-rose-400 focus:ring-rose-200 bg-rose-50/20'
                     : 'border-gray-200 focus:border-[#470923] focus:ring-plum-100'
-                }`}
+                  }`}
               />
               <User className="w-4 h-4 text-gray-400 absolute right-3 top-3.5" />
             </div>
@@ -435,11 +430,10 @@ export default function QuickOrderCard() {
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="06 XX XX XX XX"
-                className={`w-full px-3.5 py-2.5 rounded-xl border text-base sm:text-sm text-left focus:outline-none focus:ring-2 pl-9 ${
-                  errors.phone 
-                    ? 'border-rose-400 focus:ring-rose-200 bg-rose-50/20' 
+                className={`w-full px-3.5 py-2.5 rounded-xl border text-base sm:text-sm text-left focus:outline-none focus:ring-2 pl-9 ${errors.phone
+                    ? 'border-rose-400 focus:ring-rose-200 bg-rose-50/20'
                     : 'border-gray-200 focus:border-[#470923] focus:ring-plum-100'
-                }`}
+                  }`}
               />
               <Phone className="w-4 h-4 text-gray-400 absolute left-3 top-3.5" />
             </div>
@@ -479,9 +473,8 @@ export default function QuickOrderCard() {
               <select
                 value={selectedCommune}
                 onChange={(e) => setSelectedCommune(e.target.value)}
-                className={`w-full px-3 py-2.5 rounded-xl border text-base sm:text-sm text-right focus:outline-none focus:border-[#470923] bg-white cursor-pointer ${
-                  errors.commune ? 'border-rose-400' : 'border-gray-200'
-                }`}
+                className={`w-full px-3 py-2.5 rounded-xl border text-base sm:text-sm text-right focus:outline-none focus:border-[#470923] bg-white cursor-pointer ${errors.commune ? 'border-rose-400' : 'border-gray-200'
+                  }`}
               >
                 <option value="">-- اختاري البلدية --</option>
                 {currentWilaya.communes && currentWilaya.communes.map((c, i) => (
@@ -525,11 +518,10 @@ export default function QuickOrderCard() {
             <div className="grid grid-cols-2 gap-2">
               <div
                 onClick={() => setDeliveryType('home')}
-                className={`cursor-pointer p-2.5 rounded-xl border-2 transition-all flex items-center justify-between text-xs ${
-                  deliveryType === 'home'
+                className={`cursor-pointer p-2.5 rounded-xl border-2 transition-all flex items-center justify-between text-xs ${deliveryType === 'home'
                     ? 'border-[#470923] bg-plum-50/70 font-bold text-[#470923]'
                     : 'border-gray-200 hover:border-plum-200 text-gray-700 bg-white'
-                }`}
+                  }`}
               >
                 <div className="flex items-center gap-1.5">
                   <Home className="w-3.5 h-3.5 text-[#470923]" />
@@ -548,11 +540,10 @@ export default function QuickOrderCard() {
 
               <div
                 onClick={() => setDeliveryType('desk')}
-                className={`cursor-pointer p-2.5 rounded-xl border-2 transition-all flex items-center justify-between text-xs ${
-                  deliveryType === 'desk'
+                className={`cursor-pointer p-2.5 rounded-xl border-2 transition-all flex items-center justify-between text-xs ${deliveryType === 'desk'
                     ? 'border-[#470923] bg-plum-50/70 font-bold text-[#470923]'
                     : 'border-gray-200 hover:border-plum-200 text-gray-700 bg-white'
-                }`}
+                  }`}
               >
                 <div className="flex items-center gap-1.5">
                   <Building2 className="w-3.5 h-3.5 text-[#470923]" />
