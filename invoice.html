@@ -46,28 +46,31 @@
       padding: 40px 20px;
     }
 
+    /* Floating Action Bar */
     .action-bar {
       max-width: 860px;
       margin: 0 auto 24px auto;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 14px 20px;
-      background: rgba(255, 255, 255, 0.85);
+      padding: 12px 20px;
+      background: rgba(255, 255, 255, 0.88);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid var(--color-border);
-      border-radius: 14px;
+      border-radius: 16px;
       box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+      gap: 16px;
     }
 
     .action-bar .brand-badge {
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 600;
       color: var(--color-primary);
+      white-space: nowrap;
     }
 
     .action-bar .brand-badge .dot {
@@ -77,16 +80,59 @@
       border-radius: 50%;
     }
 
+    .action-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Language Segmented Control */
+    .lang-segmented-control {
+      display: inline-flex;
+      background: #EBEBEF;
+      padding: 3px;
+      border-radius: 980px;
+      gap: 2px;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    .lang-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 980px;
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      color: var(--color-text-muted);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      font-family: inherit;
+    }
+
+    .lang-btn.active {
+      background: #FFFFFF;
+      color: var(--color-primary);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      font-weight: 700;
+    }
+
+    .lang-btn:hover:not(.active) {
+      color: var(--color-text-main);
+    }
+
     .btn-group {
       display: flex;
-      gap: 10px;
+      gap: 8px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 9px 18px;
+      padding: 8px 16px;
       font-size: 13px;
       font-weight: 600;
       border-radius: 980px;
@@ -94,6 +140,8 @@
       border: none;
       transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
       text-decoration: none;
+      font-family: inherit;
+      white-space: nowrap;
     }
 
     .btn-primary {
@@ -134,18 +182,15 @@
       justify-content: space-between;
       align-items: flex-start;
       border-bottom: 1px solid var(--color-border-subtle);
-      padding-bottom: 32px;
-      margin-bottom: 32px;
+      padding-bottom: 30px;
+      margin-bottom: 30px;
     }
 
     .brand-title {
-      font-size: 26px;
+      font-size: 25px;
       font-weight: 800;
       letter-spacing: -0.03em;
       color: var(--color-primary);
-      display: flex;
-      align-items: center;
-      gap: 10px;
     }
 
     .brand-subtitle {
@@ -193,7 +238,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 28px;
-      margin-bottom: 40px;
+      margin-bottom: 36px;
       padding: 24px;
       background: #FBFBFC;
       border-radius: 14px;
@@ -225,8 +270,8 @@
 
     /* Scope & Value Narrative */
     .executive-summary {
-      margin-bottom: 36px;
-      padding: 20px 24px;
+      margin-bottom: 34px;
+      padding: 18px 24px;
       border-left: 3px solid var(--color-primary);
       background: var(--color-primary-soft);
       border-radius: 0 12px 12px 0;
@@ -340,11 +385,11 @@
     .totals-container {
       display: flex;
       justify-content: flex-end;
-      margin-bottom: 40px;
+      margin-bottom: 38px;
     }
 
     .totals-table {
-      width: 360px;
+      width: 380px;
     }
 
     .totals-row {
@@ -376,9 +421,9 @@
 
     .grand-total-sub {
       text-align: right;
-      font-size: 12px;
+      font-size: 11px;
       color: var(--color-text-subtle);
-      margin-top: 2px;
+      margin-top: 4px;
       font-weight: 500;
     }
 
@@ -452,6 +497,10 @@
         display: none !important;
       }
 
+      .invoice-view[style*="display: none"] {
+        display: none !important;
+      }
+
       .invoice-card {
         border: none;
         box-shadow: none;
@@ -460,7 +509,7 @@
       }
 
       @page {
-        margin: 1.5cm;
+        margin: 1.2cm 1.5cm;
         size: A4;
       }
     }
@@ -473,232 +522,538 @@
   <div class="action-bar">
     <div class="brand-badge">
       <span class="dot"></span>
-      Project Invoice • Mishkat Box (Graphics by BI)
+      <span id="brand-badge-text">Project Invoice • Mishkat Box (Graphics by BI)</span>
     </div>
-    <div class="btn-group">
-      <button class="btn btn-secondary" onclick="window.print()">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round">
-          <polyline points="6 9 6 2 18 2 18 9"></polyline>
-          <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
-          <rect x="6" y="14" width="12" height="8"></rect>
-        </svg>
-        Print / Save as PDF
-      </button>
-      <a class="btn btn-primary"
-        href="https://docs.google.com/document/d/15DMZJhmq3wecwpMGjZwETdLdaPriqfNQ6tc1Kquq1Fg/edit?authuser=personal"
-        target="_blank">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-          stroke-linecap="round" stroke-linejoin="round">
-          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-          <polyline points="14 2 14 8 20 8"></polyline>
-          <line x1="16" y1="13" x2="8" y2="13"></line>
-          <line x1="16" y1="17" x2="8" y2="17"></line>
-        </svg>
-        Open in Google Docs
-      </a>
+
+    <div class="action-controls">
+      <!-- Language Toggle Switch -->
+      <div class="lang-segmented-control">
+        <button id="btn-en" class="lang-btn active" onclick="switchLanguage('en')">
+          <span>🇬🇧</span> English
+        </button>
+        <button id="btn-fr" class="lang-btn" onclick="switchLanguage('fr')">
+          <span>🇫🇷</span> Français
+        </button>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="btn-group">
+        <button class="btn btn-secondary" onclick="window.print()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="6 9 6 2 18 2 18 9"></polyline>
+            <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+            <rect x="6" y="14" width="12" height="8"></rect>
+          </svg>
+          <span id="print-btn-text">Print / Save as PDF</span>
+        </button>
+        <a class="btn btn-primary"
+          href="https://docs.google.com/document/d/15DMZJhmq3wecwpMGjZwETdLdaPriqfNQ6tc1Kquq1Fg/edit?authuser=personal"
+          target="_blank">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+          </svg>
+          <span id="docs-btn-text">Google Docs</span>
+        </a>
+      </div>
     </div>
   </div>
 
   <!-- Main Invoice Paper -->
   <div class="invoice-card">
 
-    <!-- Header -->
-    <header class="invoice-header">
-      <div>
-        <h1 class="brand-title">
-          <span>Website Design & Development</span>
-        </h1>
-        <p class="brand-subtitle">Custom E-Commerce Landing Page & Automated Order System</p>
-      </div>
-      <div class="invoice-tag-block">
-        <div class="invoice-label">Project Invoice</div>
-        <div class="invoice-number">INV-2026-012</div>
-        <span class="status-pill">Due on Handover</span>
-      </div>
-    </header>
+    <!-- ========================================================================= -->
+    <!-- 1. ENGLISH VERSION (ACTIVE BY DEFAULT)                                   -->
+    <!-- ========================================================================= -->
+    <div id="invoice-en" class="invoice-view">
 
-    <!-- Metadata Grid -->
-    <section class="invoice-meta-grid">
-      <div class="meta-column">
-        <h4>Billed To (Client)</h4>
-        <p>Graphics by BI</p>
-        <div class="sub-detail">Brand: @Graphics.by.Bl</div>
-        <div class="sub-detail">Algiers, Algeria 🇩🇿</div>
-      </div>
-      <div class="meta-column">
-        <h4>Project Details</h4>
-        <p>Mishkat Box (بوكس مشكاة)</p>
-        <div class="sub-detail">Bespoke COD Web Application</div>
-        <div class="sub-detail">Platform: React 19 + Vite + Tailwind</div>
-      </div>
-      <div class="meta-column">
-        <h4>Dates & Terms</h4>
-        <p>Issue Date: Nov 5, 2026</p>
-        <div class="sub-detail">Terms: Net 0 (Upon Completion)</div>
-        <div class="sub-detail">Currency: DZD (Algerian Dinar)</div>
-      </div>
-    </section>
+      <!-- Header -->
+      <header class="invoice-header">
+        <div>
+          <h1 class="brand-title">
+            <span>Website Design & Development</span>
+          </h1>
+          <p class="brand-subtitle">Custom E-Commerce Landing Page & Automated Order System</p>
+        </div>
+        <div class="invoice-tag-block">
+          <div class="invoice-label">Project Invoice</div>
+          <div class="invoice-number">INV-2026-012</div>
+          <span class="status-pill">Due on Handover</span>
+        </div>
+      </header>
 
-    <!-- Narrative & Scope of Value -->
-    <div class="executive-summary">
-      <h3>Project Overview & Scope</h3>
-      <p>
-        This invoice covers the complete design, development, and order automation for the <strong>Mishkat Box (بوكس مشكاة)</strong> Cash on Delivery (COD) landing page. Built with React and Tailwind CSS, the website provides ultra-fast mobile loading, complete integration for all 58 Algerian Wilayas and communes, zero monthly server fees, and automated order logging directly into Google Sheets.
-      </p>
+      <!-- Metadata Grid -->
+      <section class="invoice-meta-grid">
+        <div class="meta-column">
+          <h4>Billed To (Client)</h4>
+          <p>Graphics by BI</p>
+          <div class="sub-detail">Brand: @Graphics.by.Bl</div>
+          <div class="sub-detail">Algiers, Algeria 🇩🇿</div>
+        </div>
+        <div class="meta-column">
+          <h4>Project Details</h4>
+          <p>Mishkat Box (بوكس مشكاة)</p>
+          <div class="sub-detail">Bespoke COD Web Application</div>
+          <div class="sub-detail">Platform: React 19 + Vite + Tailwind</div>
+        </div>
+        <div class="meta-column">
+          <h4>Dates & Terms</h4>
+          <p>Issue Date: Nov 5, 2026</p>
+          <div class="sub-detail">Terms: Net 0 (Upon Completion)</div>
+          <div class="sub-detail">Currency: DZD (Algerian Dinar)</div>
+        </div>
+      </section>
+
+      <!-- Narrative & Scope of Value -->
+      <div class="executive-summary">
+        <h3>Project Overview & Scope</h3>
+        <p>
+          This invoice covers the complete design, frontend engineering, and order automation for the <strong>Mishkat
+            Box (بوكس مشكاة)</strong> Cash on Delivery (COD) landing page. Built custom with React and Tailwind CSS, the
+          application delivers sub-second mobile loading speeds (&lt; 1.2s), full domestic logistics integration for all
+          58 Algerian Wilayas and communes, automated real-time order logging to Google Sheets, and zero recurring
+          monthly hosting fees.
+        </p>
+      </div>
+
+      <!-- Line Items Table -->
+      <div class="table-wrapper">
+        <div class="table-title">
+          <span>Itemized Scope of Deliverables</span>
+          <span style="font-size: 12px; font-weight: 500; color: var(--color-text-muted);">5 Comprehensive
+            Modules</span>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 50px;" class="text-center">#</th>
+              <th>Deliverable & Detailed Scope</th>
+              <th style="width: 130px;">Category</th>
+              <th style="width: 150px;" class="text-right">Investment</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-center" style="font-weight: 600; color: var(--color-text-subtle);">01</td>
+              <td>
+                <div class="item-title">UI/UX Strategy, Brand Identity & Art Direction</div>
+                <div class="item-desc">
+                  Custom luxury Islamic aesthetic tailored to Graphics by BI (#470923 Deep Burgundy, Gold & Soft Rose
+                  accents). Complete Arabic RTL typography system (Amiri calligraphy + Tajawal), conversion-focused
+                  above-the-fold layout, secondary product showcase (5 luxury box contents), customer reviews gallery,
+                  and interactive FAQ accordion.
+                </div>
+                <span class="tag-badge">Design & Conversion Optimization</span>
+              </td>
+              <td>
+                <span style="font-weight: 600; font-size: 12px;">UI/UX & Art</span>
+              </td>
+              <td class="text-right">
+                <div class="item-price">15,000 DZD</div>
+                <div class="item-sub-price">~$60 USD</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-center" style="font-weight: 600; color: var(--color-text-subtle);">02</td>
+              <td>
+                <div class="item-title">High-Performance Frontend & Rich Media Engineering</div>
+                <div class="item-desc">
+                  Ultra-fast React 19 + Tailwind CSS Single Page Application (&lt; 1.2s load time on Algerian 3G/4G).
+                  Includes interactive Video Player (real unboxing footage) & multi-photo carousel with active sync,
+                  dynamic 4-tier pricing & quantity calculator (1, 2, 3 boxes with Free Shipping badge, custom bulk
+                  pack), celebratory confetti, and mobile sticky CTA bar.
+                </div>
+                <span class="tag-badge">Frontend Development</span>
+              </td>
+              <td>
+                <span style="font-weight: 600; font-size: 12px;">Development</span>
+              </td>
+              <td class="text-right">
+                <div class="item-price">18,000 DZD</div>
+                <div class="item-sub-price">~$72 USD</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-center" style="font-weight: 600; color: var(--color-text-subtle);">03</td>
+              <td>
+                <div class="item-title">Algerian Domestic Logistics & Validation Engine</div>
+                <div class="item-desc">
+                  Full 58 Wilayas dataset integration with dynamic real-time commune population, manual commune fallback
+                  entry, Home Delivery vs. Stop Desk (المكتب) selectors, and strict Algerian phone number validation
+                  algorithm (05, 06, 07, 02).
+                </div>
+                <span class="tag-badge">Domestic Logistics</span>
+              </td>
+              <td>
+                <span style="font-weight: 600; font-size: 12px;">Logistics Engine</span>
+              </td>
+              <td class="text-right">
+                <div class="item-price">12,000 DZD</div>
+                <div class="item-sub-price">~$48 USD</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-center" style="font-weight: 600; color: var(--color-text-subtle);">04</td>
+              <td>
+                <div class="item-title">Serverless CRM Database & Private Google Sheets Sync</div>
+                <div class="item-desc">
+                  Custom Google Apps Script webhook integration logging all customer orders directly into a 100% private
+                  Google Sheet. Includes automated timestamping, unique order ID generation (MSH-XXXXX), 100% private
+                  client ownership protocol (zero developer access to customer data), and zero recurring monthly hosting
+                  or database costs.
+                </div>
+                <span class="tag-badge">Database & Cloud Sync</span>
+              </td>
+              <td>
+                <span style="font-weight: 600; font-size: 12px;">Cloud Database</span>
+              </td>
+              <td class="text-right">
+                <div class="item-price">10,000 DZD</div>
+                <div class="item-sub-price">~$40 USD</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-center" style="font-weight: 600; color: var(--color-text-subtle);">05</td>
+              <td>
+                <div class="item-title">Instant Multi-Channel Order Notification System (Telegram & Email)</div>
+                <div class="item-desc">
+                  Real-time automated alert dispatch engine triggering the exact second an order is submitted:
+                  <br>• <strong>Telegram Bot Instant Notification:</strong> Immediate push alert to phone via Telegram
+                  with full customer order details (Full Name, Phone, Wilaya, Commune, Quantity, Total Price).
+                  <br>• <strong>Gmail Order Alert Notification:</strong> Formatted HTML email alert with 1-tap customer
+                  phone dialing (<code>tel:</code> link).
+                </div>
+                <span class="tag-badge">Real-Time Alerts</span>
+              </td>
+              <td>
+                <span style="font-weight: 600; font-size: 12px;">Alert System</span>
+              </td>
+              <td class="text-right">
+                <div class="item-price">10,000 DZD</div>
+                <div class="item-sub-price">~$40 USD</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Financial Totals -->
+      <div class="totals-container">
+        <div class="totals-table">
+          <div class="totals-row">
+            <span>Gross Subtotal:</span>
+            <span style="font-weight: 600; color: var(--color-text-main);">65,000 DZD</span>
+          </div>
+          <div class="totals-row discount">
+            <span>Introductory Client Privilege:</span>
+            <span>- 5,000 DZD</span>
+          </div>
+          <div class="totals-row grand-total">
+            <span>Total Balance Due:</span>
+            <span class="total-amount">60,000 DZD</span>
+          </div>
+          <div class="grand-total-sub">Equivalent: ~$240 USD / ~€222 EUR (Parallel Market Rate: $1 ≈ 250 DZD | €1 ≈ 270
+            DZD)</div>
+        </div>
+      </div>
+
+      <!-- Payment & Handover Guarantee -->
+      <div class="settlement-card">
+        <div>
+          <div class="settlement-title">Accepted Settlement Methods</div>
+          <div class="settlement-item">💳 <strong>BaridiMob / CCP:</strong> Rip & Account details provided upon request
+          </div>
+          <div class="settlement-item">🤝 <strong>Cash on Handover:</strong> Payable upon live project walkthrough</div>
+          <div class="settlement-item">🏦 <strong>Bank Wire Transfer:</strong> Accepted (Algerian Dinar)</div>
+        </div>
+        <div>
+          <div class="settlement-title">Handover & Warranty Guarantee</div>
+          <div class="settlement-item">🛡️ <strong>100% Code Ownership:</strong> Full source code, assets, and
+            repository rights transferred to client.</div>
+          <div class="settlement-item">🔒 <strong>Privacy Assurance:</strong> Zero developer access to the client's
+            private order database.</div>
+          <div class="settlement-item">✨ <strong>30-Day Support:</strong> Complimentary bug-fix guarantee post-handover.
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer & Sign-off -->
+      <footer class="invoice-footer">
+        <div class="footer-terms">
+          <p>Thank you for partnering with us.</p>
+          <p>Crafted with perfection for <strong>Graphics by BI</strong> • Mishkat Box 2026</p>
+        </div>
+        <div class="signature-box">
+          <div class="signature-line"></div>
+          <div style="font-weight: 600; color: var(--color-text-main);">Authorized Signature</div>
+          <div style="font-size: 11px;">Lead Software Engineer & Developer</div>
+        </div>
+      </footer>
+
     </div>
 
-    <!-- Line Items Table -->
-    <div class="table-wrapper">
-      <div class="table-title">
-        <span>Itemized Scope of Deliverables</span>
-        <span style="font-size: 12px; font-weight: 500; color: var(--color-text-muted);">4 Comprehensive Modules</span>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 50px;" class="text-center">#</th>
-            <th>Deliverable & Detailed Scope</th>
-            <th style="width: 130px;">Category</th>
-            <th style="width: 150px;" class="text-right">Investment</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="text-center" style="font-weight: 600; color: var(--color-text-subtle);">01</td>
-            <td>
-              <div class="item-title">UI/UX Strategy, Brand Identity & Art Direction</div>
-              <div class="item-desc">
-                Custom luxury Islamic aesthetic tailored to Graphics by BI (#470923 Deep Burgundy, Gold & Soft Rose
-                accents). Complete Arabic RTL typography system (Amiri calligraphy + Tajawal), conversion-focused
-                above-the-fold layout, interactive media gallery with video integration, micro-animations, and
-                celebratory confetti.
-              </div>
-              <span class="tag-badge">Design & Conversion Rate Optimization</span>
-            </td>
-            <td>
-              <span style="font-weight: 600; font-size: 12px;">UI/UX & Art</span>
-            </td>
-            <td class="text-right">
-              <div class="item-price">18,000 DZD</div>
-              <div class="item-sub-price">~$72 USD</div>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-center" style="font-weight: 600; color: var(--color-text-subtle);">02</td>
-            <td>
-              <div class="item-title">High-Performance Frontend Engineering (React 19 + Tailwind)</div>
-              <div class="item-desc">
-                Single Page Application (SPA) architecture optimized for lightning-fast loading on Algerian mobile
-                connections. Includes interactive Video & Photo Carousel, dynamic 4-tier quantity & price calculator (1
-                box, 2 boxes, 3 boxes with Free Delivery badge, custom bulk pack), and mobile sticky order CTA bar.
-              </div>
-              <span class="tag-badge">Frontend Engineering</span>
-            </td>
-            <td>
-              <span style="font-weight: 600; font-size: 12px;">Development</span>
-            </td>
-            <td class="text-right">
-              <div class="item-price">24,000 DZD</div>
-              <div class="item-sub-price">~$96 USD</div>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-center" style="font-weight: 600; color: var(--color-text-subtle);">03</td>
-            <td>
-              <div class="item-title">Algerian Logistics Engine (58 Wilayas & Communes)</div>
-              <div class="item-desc">
-                Full 58 Wilayas dataset integration with dynamic real-time commune population, manual commune fallback
-                entry, Home Delivery vs. Stop Desk (المكتب) selectors, and strict Algerian phone number validation
-                algorithm (05, 06, 07, 02).
-              </div>
-              <span class="tag-badge">Domestic Logistics</span>
-            </td>
-            <td>
-              <span style="font-weight: 600; font-size: 12px;">Logistics Engine</span>
-            </td>
-            <td class="text-right">
-              <div class="item-price">12,000 DZD</div>
-              <div class="item-sub-price">~$48 USD</div>
-            </td>
-          </tr>
-          <tr>
-            <td class="text-center" style="font-weight: 600; color: var(--color-text-subtle);">04</td>
-            <td>
-              <div class="item-title">Serverless Backend & CRM Database (Google Sheets API)</div>
-              <div class="item-desc">
-                Custom Google Apps Script webhook integration logging all customer orders directly into a 100% private
-                Google Sheet. Includes automated instant Gmail order alerts with 1-click customer phone dialing,
-                WhatsApp backup confirmation button, and zero recurring monthly hosting or database costs.
-              </div>
-              <span class="tag-badge">Backend & Cloud Automation</span>
-            </td>
-            <td>
-              <span style="font-weight: 600; font-size: 12px;">Cloud Automation</span>
-            </td>
-            <td class="text-right">
-              <div class="item-price">11,000 DZD</div>
-              <div class="item-sub-price">~$44 USD</div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
 
-    <!-- Financial Totals -->
-    <div class="totals-container">
-      <div class="totals-table">
-        <div class="totals-row">
-          <span>Gross Subtotal:</span>
-          <span style="font-weight: 600; color: var(--color-text-main);">65,000 DZD</span>
-        </div>
-        <div class="totals-row discount">
-          <span>Introductory Client Privilege:</span>
-          <span>- 5,000 DZD</span>
-        </div>
-        <div class="totals-row grand-total">
-          <span>Total Balance Due:</span>
-          <span class="total-amount">60,000 DZD</span>
-        </div>
-        <div class="grand-total-sub">Equivalent: ~$240 USD / ~€222 EUR (Parallel Market Rate: $1 ≈ 250 DZD | €1 ≈ 270
-          DZD)</div>
-      </div>
-    </div>
+    <!-- ========================================================================= -->
+    <!-- 2. FRENCH VERSION (ACTIVATED VIA TOGGLE)                                  -->
+    <!-- ========================================================================= -->
+    <div id="invoice-fr" class="invoice-view" style="display: none;">
 
-    <!-- Payment & Handover Guarantee -->
-    <div class="settlement-card">
-      <div>
-        <div class="settlement-title">Accepted Settlement Methods</div>
-        <div class="settlement-item">💳 <strong>BaridiMob / CCP:</strong> Rip & Account details provided upon request
+      <!-- Header -->
+      <header class="invoice-header">
+        <div>
+          <h1 class="brand-title">
+            <span>Conception & Développement Web</span>
+          </h1>
+          <p class="brand-subtitle">Landing Page E-Commerce Sur-Mesure & Système de Commandes Automatisé</p>
         </div>
-        <div class="settlement-item">🤝 <strong>Cash on Handover:</strong> Payable upon live project walkthrough</div>
-        <div class="settlement-item">🏦 <strong>Bank Wire Transfer:</strong> Accepted (Algerian Dinar)</div>
-      </div>
-      <div>
-        <div class="settlement-title">Handover & Warranty Guarantee</div>
-        <div class="settlement-item">🛡️ <strong>100% Code Ownership:</strong> Full source code, assets, and repository
-          rights transferred to client.</div>
-        <div class="settlement-item">🔒 <strong>Privacy Assurance:</strong> Zero developer access to the client's
-          private order database.</div>
-        <div class="settlement-item">✨ <strong>30-Day Support:</strong> Complimentary bug-fix guarantee post-handover.
+        <div class="invoice-tag-block">
+          <div class="invoice-label">Facture de Prestation</div>
+          <div class="invoice-number">INV-2026-012</div>
+          <span class="status-pill">À Régler à la Livraison</span>
         </div>
-      </div>
-    </div>
+      </header>
 
-    <!-- Footer & Sign-off -->
-    <footer class="invoice-footer">
-      <div class="footer-terms">
-        <p>Thank you for partnering with us.</p>
-        <p>Crafted with perfection for <strong>Graphics by BI</strong> • Mishkat Box 2026</p>
+      <!-- Metadata Grid -->
+      <section class="invoice-meta-grid">
+        <div class="meta-column">
+          <h4>Facturé à (Client)</h4>
+          <p>Graphics by BI</p>
+          <div class="sub-detail">Marque : @Graphics.by.Bl</div>
+          <div class="sub-detail">Alger, Algérie 🇩🇿</div>
+        </div>
+        <div class="meta-column">
+          <h4>Détails du Projet</h4>
+          <p>Box Mishkat (بوكس مشكاة)</p>
+          <div class="sub-detail">Application Web COD Sur-Mesure</div>
+          <div class="sub-detail">Stack : React 19 + Vite + Tailwind</div>
+        </div>
+        <div class="meta-column">
+          <h4>Dates & Conditions</h4>
+          <p>Date d'émission : 5 Nov. 2026</p>
+          <div class="sub-detail">Conditions : Paiement à la Livraison (Net 0)</div>
+          <div class="sub-detail">Devise : DZD (Dinar Algérien)</div>
+        </div>
+      </section>
+
+      <!-- Narrative & Scope of Value -->
+      <div class="executive-summary">
+        <h3>Aperçu & Périmètre du Projet</h3>
+        <p>
+          Cette facture couvre l'intégralité de la conception graphique, du développement web et de l'automatisation des
+          commandes pour la landing page e-commerce <strong>Box Mishkat (بوكس مشكاة)</strong> en paiement à la livraison
+          (COD). Développée sur-mesure sous React et Tailwind CSS, l'application garantit un chargement ultra-rapide sur
+          mobile (&lt; 1,2s), l'intégration fluide des 58 wilayas et communes algériennes, l'enregistrement instantané
+          des commandes sur Google Sheets, et zéro frais d'hébergement mensuel.
+        </p>
       </div>
-      <div class="signature-box">
-        <div class="signature-line"></div>
-        <div style="font-weight: 600; color: var(--color-text-main);">Authorized Signature</div>
-        <div style="font-size: 11px;">Lead Software Engineer & Developer</div>
+
+      <!-- Line Items Table -->
+      <div class="table-wrapper">
+        <div class="table-title">
+          <span>Périmètre Détaillé des Livrables</span>
+          <span style="font-size: 12px; font-weight: 500; color: var(--color-text-muted);">5 Modules Complets</span>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 50px;" class="text-center">#</th>
+              <th>Module & Périmètre Détaillé des Livrables</th>
+              <th style="width: 140px;">Catégorie</th>
+              <th style="width: 150px;" class="text-right">Investissement</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="text-center" style="font-weight: 600; color: var(--color-text-subtle);">01</td>
+              <td>
+                <div class="item-title">Stratégie UI/UX, Direction Artistique & Identité Visuelle</div>
+                <div class="item-desc">
+                  Design luxueux inspiré de l'art islamique et calibré sur l'identité de Graphics by BI (#470923
+                  Bordeaux profond, Doré & nuances Rose poudré). Système typographique arabe RTL complet (calligraphie
+                  Amiri + Tajawal moderne), mise en page optimisée pour la conversion au-dessus de la ligne de
+                  flottaison, présentation détaillée des 5 composants du box, galerie d'avis clients et foire aux
+                  questions (FAQ) interactive.
+                </div>
+                <span class="tag-badge">Design & Optimisation CRO</span>
+              </td>
+              <td>
+                <span style="font-weight: 600; font-size: 12px;">UI/UX & Design</span>
+              </td>
+              <td class="text-right">
+                <div class="item-price">15 000 DZD</div>
+                <div class="item-sub-price">~$60 USD</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-center" style="font-weight: 600; color: var(--color-text-subtle);">02</td>
+              <td>
+                <div class="item-title">Ingénierie Frontend Haute Performance & Médias Riches</div>
+                <div class="item-desc">
+                  Application monopage (SPA) ultra-réactive sous React 19 et Tailwind CSS (&lt; 1,2s sur réseaux 3G/4G
+                  algériens). Inclut la galerie multimédia interactive avec lecteur vidéo intégré (vidéo réelle du box)
+                  et carrousel synchronisé de photos HD, calculateur dynamique de prix et remises à 4 paliers (1 box, 2
+                  box, 3 box avec livraison gratuite offerte, pack personnalisé), confettis festifs et barre CTA mobile
+                  fixe.
+                </div>
+                <span class="tag-badge">Développement Web</span>
+              </td>
+              <td>
+                <span style="font-weight: 600; font-size: 12px;">Développement</span>
+              </td>
+              <td class="text-right">
+                <div class="item-price">18 000 DZD</div>
+                <div class="item-sub-price">~$72 USD</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-center" style="font-weight: 600; color: var(--color-text-subtle);">03</td>
+              <td>
+                <div class="item-title">Moteur Logistique National Algérien (58 Wilayas & Communes)</div>
+                <div class="item-desc">
+                  Intégration exhaustive des 58 wilayas d'Algérie avec filtrage dynamique des communes en temps réel,
+                  champ de saisie manuelle pour les localités non listées, sélecteur de mode de livraison (À domicile vs
+                  Stop Desk en bureau), et algorithme de validation des numéros de téléphone algériens (préfixes 05, 06,
+                  07, 02).
+                </div>
+                <span class="tag-badge">Logistique Nationale</span>
+              </td>
+              <td>
+                <span style="font-weight: 600; font-size: 12px;">Moteur Logistique</span>
+              </td>
+              <td class="text-right">
+                <div class="item-price">12 000 DZD</div>
+                <div class="item-sub-price">~$48 USD</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-center" style="font-weight: 600; color: var(--color-text-subtle);">04</td>
+              <td>
+                <div class="item-title">Base de Données CRM Sans Serveur & Synchronisation Google Sheets</div>
+                <div class="item-desc">
+                  Intégration d'un webhook personnalisé Google Apps Script enregistrant chaque commande directement dans
+                  un tableur Google Sheets 100% privé. Horodatage automatique, génération d'identifiants uniques
+                  (MSH-XXXXX), protocole de confidentialité stricte (aucun accès développeur aux données clients), et
+                  zéro abonnement mensuel d'hébergement ou de base de données.
+                </div>
+                <span class="tag-badge">Cloud & Base de Données</span>
+              </td>
+              <td>
+                <span style="font-weight: 600; font-size: 12px;">Données Cloud</span>
+              </td>
+              <td class="text-right">
+                <div class="item-price">10 000 DZD</div>
+                <div class="item-sub-price">~$40 USD</div>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-center" style="font-weight: 600; color: var(--color-text-subtle);">05</td>
+              <td>
+                <div class="item-title">Système d'Alertes Instantanées Multicanal (Telegram & Email)</div>
+                <div class="item-desc">
+                  Moteur d'expédition d'alertes en temps réel déclenché à la seconde exacte où une commande est validée
+                  :
+                  <br>• <strong>Alerte Immédiate Telegram Bot :</strong> Notification push instantanée sur smartphone
+                  via Telegram avec l'ensemble des coordonnées du client (Nom, Téléphone, Wilaya, Commune, Quantité,
+                  Montant Total).
+                  <br>• <strong>Notification Email Gmail :</strong> Email HTML élégamment mis en page avec lien d'appel
+                  téléphonique direct en un clic (<code>tel:</code>).
+                </div>
+                <span class="tag-badge">Alertes en Temps Réel</span>
+              </td>
+              <td>
+                <span style="font-weight: 600; font-size: 12px;">Système d'Alertes</span>
+              </td>
+              <td class="text-right">
+                <div class="item-price">10 000 DZD</div>
+                <div class="item-sub-price">~$40 USD</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </footer>
+
+      <!-- Financial Totals -->
+      <div class="totals-container">
+        <div class="totals-table">
+          <div class="totals-row">
+            <span>Sous-total Brut :</span>
+            <span style="font-weight: 600; color: var(--color-text-main);">65 000 DZD</span>
+          </div>
+          <div class="totals-row discount">
+            <span>Privilège Client Première Collaboration :</span>
+            <span>- 5 000 DZD</span>
+          </div>
+          <div class="totals-row grand-total">
+            <span>Solde Net à Régler :</span>
+            <span class="total-amount">60 000 DZD</span>
+          </div>
+          <div class="grand-total-sub">Équivalent au taux du marché parallèle (Square) : ~$240 USD / ~€222 EUR ($1 ≈ 250
+            DZD | 1€ ≈ 270 DZD)</div>
+        </div>
+      </div>
+
+      <!-- Payment & Handover Guarantee -->
+      <div class="settlement-card">
+        <div>
+          <div class="settlement-title">Modes de Règlement Acceptés</div>
+          <div class="settlement-item">💳 <strong>BaridiMob / CCP :</strong> Coordonnées RIP fournies sur demande</div>
+          <div class="settlement-item">🤝 <strong>Espèces à la Livraison :</strong> Règlement direct lors de la remise
+            du projet</div>
+          <div class="settlement-item">🏦 <strong>Virement Bancaire :</strong> Accepté (Dinar Algérien)</div>
+        </div>
+        <div>
+          <div class="settlement-title">Garantie de Livraison & Conformité</div>
+          <div class="settlement-item">🛡️ <strong>Propriété Intégrale du Code :</strong> Cession complète des droits et
+            du code source au client.</div>
+          <div class="settlement-item">🔒 <strong>Confidentialité Absolue :</strong> Accès strictement réservé au client
+            sur sa base de commandes.</div>
+          <div class="settlement-item">✨ <strong>Support 30 Jours Inclus :</strong> Garantie corrective offerte après la
+            livraison.</div>
+        </div>
+      </div>
+
+      <!-- Footer & Sign-off -->
+      <footer class="invoice-footer">
+        <div class="footer-terms">
+          <p>Merci pour votre confiance et pour cette collaboration.</p>
+          <p>Réalisé sur-mesure pour <strong>Graphics by BI</strong> • Box Mishkat 2026</p>
+        </div>
+        <div class="signature-box">
+          <div class="signature-line"></div>
+          <div style="font-weight: 600; color: var(--color-text-main);">Signature Autorisée</div>
+          <div style="font-size: 11px;">Ingénieur & Développeur Logiciel Indépendant</div>
+        </div>
+      </footer>
+
+    </div>
 
   </div>
+
+  <script>
+    function switchLanguage(lang) {
+      const isEn = lang === 'en';
+      document.getElementById('invoice-en').style.display = isEn ? 'block' : 'none';
+      document.getElementById('invoice-fr').style.display = isEn ? 'none' : 'block';
+      document.getElementById('btn-en').classList.toggle('active', isEn);
+      document.getElementById('btn-fr').classList.toggle('active', !isEn);
+
+      document.title = isEn
+        ? "Invoice INV-2026-012 | Graphics by BI — Mishkat Box Web App"
+        : "Facture INV-2026-012 | Graphics by BI — Application Web Box Mishkat";
+
+      document.getElementById('brand-badge-text').innerText = isEn
+        ? "Project Invoice • Mishkat Box (Graphics by BI)"
+        : "Facture de Prestation • Box Mishkat (Graphics by BI)";
+
+      document.getElementById('print-btn-text').innerText = isEn
+        ? "Print / Save as PDF"
+        : "Imprimer / Exporter PDF";
+    }
+  </script>
 
 </body>
 
