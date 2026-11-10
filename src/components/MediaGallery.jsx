@@ -3,12 +3,11 @@ import { Play, Pause, ChevronRight, ChevronLeft, Sparkles, Volume2, VolumeX } fr
 
 const MEDIA_ITEMS = [
   {
-    type: 'video',
-    src: '/images/box-video.mp4',
-    poster: '/images/box-overview.png',
-    title: 'فيديو فتح ومعاينة البوكس (Unboxing)',
-    badge: 'فيديو حقيقي 🎥',
-    thumbLabel: 'فيديو البوكس',
+    type: 'image',
+    src: '/images/file_00000000f2c481f4a5b3d91e175b167a.png',
+    title: 'علبة بوكس مشكاة الفاخرة ومحتوياتها الكاملة',
+    badge: 'البوكس الأصلي ✨',
+    thumbLabel: 'بوكس مشكاة',
   },
   {
     type: 'image',
@@ -53,11 +52,12 @@ const MEDIA_ITEMS = [
     thumbLabel: 'الفواصل',
   },
   {
-    type: 'image',
-    src: '/images/box-overview.png',
-    title: 'علبة بوكس مشكاة الفاخرة الصلبة لحفظ المحتويات',
-    badge: 'العلبة الفاخرة ✨',
-    thumbLabel: 'العلبة الفاخرة',
+    type: 'video',
+    src: '/images/box-video.mp4',
+    poster: '/images/file_00000000f2c481f4a5b3d91e175b167a.png',
+    title: 'فيديو فتح ومعاينة البوكس (Unboxing)',
+    badge: 'فيديو حقيقي 🎥',
+    thumbLabel: 'فيديو البوكس',
   },
 ];
 
@@ -70,7 +70,7 @@ export default function MediaGallery() {
   const currentMedia = MEDIA_ITEMS[currentIndex];
 
   const handleSelectMedia = (index) => {
-    if (currentIndex === 0 && videoRef.current) {
+    if (videoRef.current) {
       videoRef.current.pause();
       setIsPlaying(false);
     }
@@ -130,6 +130,7 @@ export default function MediaGallery() {
               ref={videoRef}
               src={currentMedia.src}
               poster={currentMedia.poster}
+              preload="none"
               playsInline
               loop
               muted={isMuted}

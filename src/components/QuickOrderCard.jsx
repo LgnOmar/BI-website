@@ -82,6 +82,19 @@ export default function QuickOrderCard() {
   // Free delivery for 3 boxes or more
   const isFreeDelivery = actualQuantity >= 3;
 
+  // Normalize Algerian phone number (handles +213, 00213, 213 prefixes from mobile autofill)
+  const normalizePhone = (num) => {
+    let clean = (num || '').replace(/[\s\-\(\)\.]/g, '');
+    if (clean.startsWith('+213')) {
+      clean = '0' + clean.slice(4);
+    } else if (clean.startsWith('00213')) {
+      clean = '0' + clean.slice(5);
+    } else if (clean.startsWith('213') && clean.length === 12) {
+      clean = '0' + clean.slice(3);
+    }
+    return clean;
+  };
+
   // Form Validation
   const validate = () => {
     const errs = {};
@@ -89,7 +102,7 @@ export default function QuickOrderCard() {
       errs.fullName = 'يرجى كتابة الاسم الكامل (3 أحرف على الأقل)';
     }
 
-    const cleanPhone = phone.replace(/[\s-]/g, '');
+    const cleanPhone = normalizePhone(phone);
     const phoneRegex = /^(05|06|07|02)\d{8}$/;
     if (!cleanPhone) {
       errs.phone = 'يرجى إدخال رقم الهاتف للتواصل';
@@ -122,12 +135,13 @@ export default function QuickOrderCard() {
 
     const finalCommune = selectedCommune === 'other' ? customCommune.trim() : selectedCommune;
     const orderId = 'MSH-' + Math.floor(10000 + Math.random() * 90000);
+    const cleanPhone = normalizePhone(phone);
 
     const orderPayload = {
       orderId,
       createdAt: new Date().toLocaleString('ar-DZ'),
       fullName: fullName.trim(),
-      phone: phone.trim(),
+      phone: cleanPhone,
       wilaya: currentWilaya.name,
       commune: finalCommune,
       deliveryType: deliveryType === 'home' ? 'توصيل للمنزل' : 'استلام من المكتب (Stop Desk)',
@@ -407,7 +421,7 @@ export default function QuickOrderCard() {
           {/* 3. Phone Number */}
           <div className="space-y-1">
             <label className="block text-xs font-bold text-gray-700">
-              رقم الهاتف (للاتصال لتأكيد الطلب وتسليم الطرد) <span className="text-rose-600">*</span>
+              رقم الهاتف <span className="text-rose-600">*</span>
             </label>
             <div className="relative">
               <input
@@ -436,7 +450,7 @@ export default function QuickOrderCard() {
             {/* Wilaya Dropdown */}
             <div className="space-y-1">
               <label className="block text-xs font-bold text-gray-700">
-                الولاية (58 ولاية) <span className="text-rose-600">*</span>
+                الولاية <span className="text-rose-600">*</span>
               </label>
               <select
                 value={selectedWilayaCode}
@@ -499,7 +513,7 @@ export default function QuickOrderCard() {
           {/* 5. Delivery Type Selector (Fees hidden until phone confirmation) */}
           <div className="space-y-1.5 pt-1">
             <label className="block text-xs font-bold text-gray-700">
-              طريقة ومكان الاستلام المفضلة:
+              مكان الاستلام:
             </label>
             <div className="grid grid-cols-2 gap-2">
               <div
@@ -551,11 +565,11 @@ export default function QuickOrderCard() {
           {/* 6. Live Order Summary */}
           <div className="bg-[#FAF7F2] p-3.5 rounded-2xl border border-plum-100 space-y-2 text-xs">
             <div className="flex justify-between text-gray-700">
-              <span>سعر المنتج ({actualQuantity} بوكس):</span>
+              <span>سعر المنتج:</span>
               <span className="font-bold text-[#470923]">{productSubtotal.toLocaleString()} دج</span>
             </div>
             <div className="flex justify-between text-gray-700">
-              <span>مصاريف التوصيل ({currentWilaya.name}):</span>
+              <span>مصاريف التوصيل:</span>
               {isFreeDelivery ? (
                 <span className="font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
                   توصيل مجاني 🎁
@@ -567,26 +581,18 @@ export default function QuickOrderCard() {
               )}
             </div>
             <div className="pt-2 border-t border-plum-200/80 flex justify-between items-center text-sm sm:text-base font-extrabold text-[#470923]">
-              <span>{isFreeDelivery ? 'المجموع الكلي (شامل التوصيل المجاني):' : 'المجموع (قبل مصاريف التوصيل):'}</span>
+              <span>{isFreeDelivery ? 'المجموع الكلي:' : 'المجموع:'}</span>
               <span className="text-lg sm:text-xl font-mono text-[#470923]">
                 {productSubtotal.toLocaleString()} <span className="text-xs font-cairo">دج</span>
               </span>
             </div>
           </div>
 
-          {/* Reassurance Banner Before Submitting */}
-          <div className="bg-amber-50/90 border border-amber-200/90 rounded-2xl p-3 text-right flex items-start gap-2.5 shadow-sm">
-            <Phone className="w-4 h-4 text-amber-800 shrink-0 mt-0.5" />
-            <p className="text-xs text-amber-950 leading-relaxed font-semibold">
-              سنتصل بكِ هاتفياً لتأكيد الطلب وتحديد موعد وسعر التوصيل المناسب لولايتكِ وبلديتكِ قبل الشحن 📞
-            </p>
-          </div>
-
           {/* 7. Primary Submit Button */}
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full py-3.5 rounded-2xl text-white bg-[#470923] hover:bg-plum-800 font-extrabold text-sm sm:text-base shadow-plum-lg transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2 disabled:opacity-75 touch-manipulation"
+            className="w-full py-3.5 rounded-2xl text-white bg-[#470923] hover:bg-plum-800 font-extrabold text-sm sm:text-base shadow-plum-lg transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2 disabled:opacity-75 touch-manipulation cursor-pointer"
           >
             {isSubmitting ? (
               <div className="flex items-center gap-2">
@@ -600,6 +606,14 @@ export default function QuickOrderCard() {
               </>
             )}
           </button>
+
+          {/* Reassurance Banner After Submitting Button */}
+          <div className="bg-amber-50/90 border border-amber-200/90 rounded-2xl p-3 text-right flex items-start gap-2.5 shadow-sm">
+            <Phone className="w-4 h-4 text-amber-800 shrink-0 mt-0.5" />
+            <p className="text-xs text-amber-950 leading-relaxed font-semibold">
+              سنتصل بكِ هاتفياً لتأكيد الطلب وتحديد موعد وسعر التوصيل المناسب لولايتكِ وبلديتكِ قبل الشحن 📞
+            </p>
+          </div>
 
           {/* Trust badges strip */}
           <div className="flex items-center justify-center gap-3 text-[11px] text-gray-500 pt-1">
