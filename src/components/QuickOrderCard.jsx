@@ -148,7 +148,7 @@ export default function QuickOrderCard() {
       quantity: `${actualQuantity} بوكس`,
       productPrice: `${productSubtotal} دج`,
       deliveryFee: isFreeDelivery ? 'توصيل مجاني 🎁' : 'يُحدد عند الاتصال بالزبونة',
-      totalPrice: isFreeDelivery ? `${productSubtotal} دج (توصيل مجاني)` : `${productSubtotal} دج (+ مصاريف التوصيل)`,
+      totalPrice: isFreeDelivery ? `${productSubtotal} دج (توصيل مجاني)` : `${productSubtotal} دج (+ التوصيل)`,
       notes: quantityTier === 'custom' ? `طلب كمية مخصصة (${actualQuantity})` : ''
     };
 
@@ -267,7 +267,7 @@ export default function QuickOrderCard() {
               <span className="font-bold text-[#470923]">{submittedData.deliveryType}</span>
             </div>
             <div className="flex justify-between py-1 border-b border-plum-100/60">
-              <span className="text-gray-600">مصاريف التوصيل:</span>
+              <span className="text-gray-600">التوصيل:</span>
               <span className={`font-bold ${isFreeDelivery ? 'text-emerald-700' : 'text-plum-700'}`}>
                 {isFreeDelivery ? 'توصيل مجاني 🎁' : 'تُحدد عند الاتصال التأكيدي 📞'}
               </span>
@@ -569,7 +569,7 @@ export default function QuickOrderCard() {
               <span className="font-bold text-[#470923]">{productSubtotal.toLocaleString()} دج</span>
             </div>
             <div className="flex justify-between text-gray-700">
-              <span>مصاريف التوصيل:</span>
+              <span>التوصيل:</span>
               {isFreeDelivery ? (
                 <span className="font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
                   توصيل مجاني 🎁
